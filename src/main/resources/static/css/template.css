@@ -1,0 +1,34 @@
+/* Nouveau style pour le header */
+.header {
+    background-color: #2a5a19;
+    padding: 10px;
+    color: white;
+    text-align: left;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+
+}
+.menu a {
+    text-decoration: none;
+    color: white;
+    margin: 10px 0;
+}
+
+/* Nouveau style pour le footer */
+.footer {
+    background-color: #2a5a19;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+/* Media queries pour la réactivité */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+}

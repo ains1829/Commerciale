@@ -1,0 +1,40 @@
+À Madagascar, les données d'un véhicule comprennent généralement les informations suivantes :
+
+Immatriculation du véhicule :
+Numéro d'immatriculation (ex : ABC 123)
+Date d'obtention de la plaque d'immatriculation
+Exemple : ABC 456, obtenue le 15 mars 2020
+
+Caractéristiques du véhicule :
+Marque (ex : Toyota, Honda, etc.)
+Modèle (ex : Corolla, Civic, etc.)
+Année de fabrication
+Type de carburant (essence, diesel, électrique)
+Numéro de châssis/VIN (Vehicle Identification Number)
+Exemple : Toyota Corolla, année 2015, essence, VIN : 1234567890ABCDEFGH
+
+Statut administratif :
+Date de la dernière visite technique
+Statut d'assurance
+Exemple : Dernière visite technique le 20 juillet 2022, assurance en cours jusqu'au 31 décembre 2023
+
+Historique d'entretien :
+Réparations récentes
+Changements de pièces majeures
+Kilométrage au moment des services
+Exemple : Changement des freins à 60 000 km, réparation du moteur en juin 2021
+
+Propriétaire et Transferts de propriété :
+Nom et adresse du propriétaire enregistré
+Historique des transferts de propriété
+Exemple : Propriétaire enregistré : Jean Dupont, 123, Rue des Lilas, Antananarivo
+
+Impôts et taxes :
+Preuves de paiement des taxes et impôts liés au véhicule
+Exemple : Taxe annuelle payée pour l'année 2023
+
+Histoire des accidents :
+Enregistrement des accidents passés, le cas échéant
+Exemple : Accident mineur en novembre 2018, réparé par le propriétaire précédent
+
+Ces données sont cruciales pour évaluer l'état, l'histoire et la légalité d'un véhicule à Madagascar. Elles aident à assurer la transparence lors d'achats, de ventes ou d'évaluations de véhicules dans le pays.
