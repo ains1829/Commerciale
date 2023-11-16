@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
     @GetMapping("/maPage")
     public String afficherMaPage() {
-        return "maPage";
+        return "Page";
     }
 }
