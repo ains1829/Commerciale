@@ -54,3 +54,4 @@ public void setId_article(int id_article) {
 }
    
 }
+

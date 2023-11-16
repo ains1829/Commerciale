@@ -4,7 +4,10 @@ CREATE TABLE Departement(
    nom VARCHAR(50) ,
    PRIMARY KEY(Id_Departement)
 );
-
+CREATE TABLE profil(
+    Id_profil SERIAL PRIMARY KEY ,
+    name_profil VARCHAR(50) 
+);
 CREATE TABLE membre(
    Id_membre SERIAL,
    nom VARCHAR(50)  NOT NULL,
@@ -15,7 +18,7 @@ CREATE TABLE membre(
    PRIMARY KEY(Id_membre),
    FOREIGN KEY(Id_Departement) REFERENCES Departement(Id_Departement)
 );
-
+alter table membre add column profil int references profil (Id_profil) ;
 CREATE TABLE fournisseur(
    Id_fournisseur SERIAL,
    nom VARCHAR(50) ,
@@ -42,7 +45,7 @@ CREATE TABLE article(
 
 CREATE TABLE stock(
    Id_stock SERIAL,
-   quantite INTEGER,
+   quantite DOUBLE PRECISION,
    datestock DATE,
    Id_fournisseur INTEGER NOT NULL,
    Id_article INTEGER NOT NULL,
@@ -62,6 +65,11 @@ CREATE TABLE articleprix(
    FOREIGN KEY(Id_fournisseur) REFERENCES fournisseur(Id_fournisseur),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
+CREATE TABLE proformatmere(
+    Id_proformatmere SERIAL PRIMARY KEY ,
+    dateproformat DATE,
+    nomproformatmere VARCHAR(100)
+) ;
 
 CREATE TABLE proformatmere(
    Id_proformatmere SERIAL,
@@ -78,7 +86,7 @@ CREATE TABLE proformat(
    Id_fournisseur INTEGER NOT NULL,
    Id_article INTEGER NOT NULL,
    PRIMARY KEY(Id_proformat),
-   FOREIGN KEY(Id_proformatmere) REFERENCES proformatmere(Id_proformatmere),
+   FOREIGN KEY (Id_proformatmere) REFERENCES proformatmere(Id_proformatmere),
    FOREIGN KEY(Id_fournisseur) REFERENCES fournisseur(Id_fournisseur),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
