@@ -71,6 +71,12 @@ CREATE TABLE proformatmere(
     nomproformatmere VARCHAR(100)
 ) ;
 
+CREATE TABLE proformatmere(
+   Id_proformatmere SERIAL,
+   dateproformat DATE,
+   nomproformat VARCHAR(100),
+   PRIMARY KEY(Id_proformatmere)
+);
 CREATE TABLE proformat(
    Id_proformat SERIAL,
    Id_proformatmere INTEGER NOT NULL,
@@ -84,6 +90,7 @@ CREATE TABLE proformat(
    FOREIGN KEY(Id_fournisseur) REFERENCES fournisseur(Id_fournisseur),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
+
 CREATE TABLE besoin(
    Id_besoin SERIAL,
    datebesoin DATE,
