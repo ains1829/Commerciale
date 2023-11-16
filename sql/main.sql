@@ -33,7 +33,7 @@ CREATE TABLE categorie(
 
 CREATE TABLE article(
    Id_article SERIAL,
-   nom BIT VARYING(50) ,
+   nom VARCHAR(50) ,
    unite VARCHAR(50) ,
    Id_categorie INTEGER NOT NULL,
    PRIMARY KEY(Id_article),
@@ -63,18 +63,26 @@ CREATE TABLE articleprix(
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
 
+CREATE TABLE proformatmere(
+   Id_proformatmere SERIAL,
+   dateproformat DATE,
+   nomproformat VARCHAR(100),
+   PRIMARY KEY(Id_proformatmere)
+);
 CREATE TABLE proformat(
    Id_proformat SERIAL,
-   dateproformat DATE,
+   Id_proformatmere INTEGER NOT NULL,
    quantite DOUBLE PRECISION,
    prixunitaire DOUBLE PRECISION,
    tva DOUBLE PRECISION,
    Id_fournisseur INTEGER NOT NULL,
    Id_article INTEGER NOT NULL,
    PRIMARY KEY(Id_proformat),
+   FOREIGN KEY(Id_proformatmere) REFERENCES proformatmere(Id_proformatmere),
    FOREIGN KEY(Id_fournisseur) REFERENCES fournisseur(Id_fournisseur),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
+
 CREATE TABLE besoin(
    Id_besoin SERIAL,
    datebesoin DATE,
