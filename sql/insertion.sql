@@ -66,3 +66,8 @@ insert into proformat (Id_proformatmere , quantite , prixunitaire , tva , Id_fou
     (2 , 10 , '600000' , 15 ,2,1),
     (3 , 5 , '600000' , 0 ,3,1),
     (3,50,'2000',15,3,4);
+
+CREATE OR REPLACE VIEW proformat_view as
+    SELECT proformat.Id_proformatmere , proformatmere.dateproformat , proformatmere.nomproformatmere , proformat.id_proformat , proformat.quantite , proformat.prixunitaire , proformat.tva , proformat.id_fournisseur , proformat.id_article FROM proformatmere JOIN 
+        proformat on 
+            (proformatmere.Id_proformatmere = proformat.Id_proformatmere);
