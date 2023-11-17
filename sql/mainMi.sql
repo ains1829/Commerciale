@@ -66,16 +66,12 @@ CREATE TABLE articleprix(
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
 CREATE TABLE proformatmere(
-    Id_proformatmere SERIAL PRIMARY KEY ,
-    dateproformat DATE,
-    nomproformatmere VARCHAR(100)
-) ;
-
-CREATE TABLE proformatmere(
    Id_proformatmere SERIAL,
    dateproformat DATE,
    nomproformat VARCHAR(100),
-   PRIMARY KEY(Id_proformatmere)
+   Id_fournisseur INTEGER NOT NULL,
+   PRIMARY KEY(Id_proformatmere),
+   FOREIGN KEY(Id_fournisseur) REFERENCES fournisseur(Id_fournisseur)
 );
 CREATE TABLE proformat(
    Id_proformat SERIAL,
@@ -83,11 +79,9 @@ CREATE TABLE proformat(
    quantite DOUBLE PRECISION,
    prixunitaire DOUBLE PRECISION,
    tva DOUBLE PRECISION,
-   Id_fournisseur INTEGER NOT NULL,
    Id_article INTEGER NOT NULL,
    PRIMARY KEY(Id_proformat),
    FOREIGN KEY (Id_proformatmere) REFERENCES proformatmere(Id_proformatmere),
-   FOREIGN KEY(Id_fournisseur) REFERENCES fournisseur(Id_fournisseur),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
 
