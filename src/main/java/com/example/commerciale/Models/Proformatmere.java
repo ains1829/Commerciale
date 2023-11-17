@@ -23,23 +23,40 @@ public class Proformatmere  {
 	public void setId_proformatmere(int id_proformatmere) {
 		Id_proformatmere = id_proformatmere;
 	}
+	public void setId_proformatmere(String id_proformatmere)throws Exception{
+		try{	Integer.valueOf(id_proformatmere); }
+		catch(Exception e){ throw new Exception("id_proformatmere:"+id_proformatmere+" invalide"); }
+		setId_proformatmere(Integer.valueOf(id_proformatmere));
+	}
 	public Date getDateproformat() {
 		return dateproformat;
 	}
 	public void setDateproformat(Date dateproformat) {
 		this.dateproformat = dateproformat;
 	}
+	public void setDateproformat(String dateproformat)throws Exception{
+		try{	Date.valueOf(dateproformat); }
+		catch(Exception e){ throw new Exception("dateproformat:"+dateproformat+" invalide"); }
+		setDateproformat(Date.valueOf(dateproformat));
+	}
+
 	public String getNomproformat() {
 		return nomproformat;
 	}
 	public void setNomproformat(String nomproformat) {
 		this.nomproformat = nomproformat;
 	}
+
 	public int getId_fournisseur() {
 		return Id_fournisseur;
 	}
 	public void setId_fournisseur(int id_fournisseur) {
 		Id_fournisseur = id_fournisseur;
+	}
+	public void setId_fournisseur(String id_fournisseur)throws Exception{
+		try{	Integer.valueOf(id_fournisseur); }
+		catch(Exception e){ throw new Exception("id_fournisseur:"+id_fournisseur+" invalide"); }
+		setId_fournisseur(Integer.valueOf(id_fournisseur));
 	}
 	public void insererProformatmereAndAllProformat(ProformatService proformatservice,ProformatmereService proformatmereService,Proformat[] proformats)throws Exception{
 		if(proformats==null){ throw new Exception("proformat vide"); }
