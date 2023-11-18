@@ -12,4 +12,7 @@ public class MyProformatService {
     public List<Proformatmain> getProformatAll(){
         return myProformatRepository.findAll();
     }
+    public List<Proformatmain> getProformatDetail() {
+        return myProformatRepository.getProformatById_mere();
+    }
 }

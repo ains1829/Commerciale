@@ -1,25 +1,24 @@
 package com.example.commerciale.models;
 import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 @Entity 
-@Table(name = "proformat_view")
+@Table(name = "_notcoast")
 public class Proformatmain {
     @Id
     int id_proformatmere ;
     Date dateproformat ;
-    String   nomproformatmere    ;
+    String nomproformat  ;
     int id_proformat ;
     double quantite ;
     double prixunitaire ;
     double tva ;
     int id_fournisseur ;
-    int id_article ;
-    public Proformatmain() {
-    }
+    int  id_article ;
     public int getId_proformatmere() {
         return id_proformatmere;
     }
@@ -32,11 +31,11 @@ public class Proformatmain {
     public void setDateproformat(Date dateproformat) {
         this.dateproformat = dateproformat;
     }
-    public String getNomproformatmere() {
-        return nomproformatmere;
+    public String getNomproformat() {
+        return nomproformat;
     }
-    public void setNomproformatmere(String nomproformatmere) {
-        this.nomproformatmere = nomproformatmere;
+    public void setNomproformat(String nomproformat) {
+        this.nomproformat = nomproformat;
     }
     public int getId_proformat() {
         return id_proformat;
@@ -74,16 +73,18 @@ public class Proformatmain {
     public void setId_article(int id_article) {
         this.id_article = id_article;
     }
-    public Proformatmain(int id_proformatmere, Date dateproformat, String nomproformatmere, int id_proformat,
+    public Proformatmain(int id_proformatmere, Date dateproformat, String nomproformat, int id_proformat,
             double quantite, double prixunitaire, double tva, int id_fournisseur, int id_article) {
         this.id_proformatmere = id_proformatmere;
         this.dateproformat = dateproformat;
-        this.nomproformatmere = nomproformatmere;
+        this.nomproformat = nomproformat;
         this.id_proformat = id_proformat;
         this.quantite = quantite;
         this.prixunitaire = prixunitaire;
         this.tva = tva;
         this.id_fournisseur = id_fournisseur;
         this.id_article = id_article;
+    }
+    public Proformatmain() {
     }
 }

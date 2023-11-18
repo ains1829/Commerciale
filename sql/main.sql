@@ -75,7 +75,9 @@ CREATE TABLE proformatmere(
    Id_proformatmere SERIAL,
    dateproformat DATE,
    nomproformat VARCHAR(100),
-   PRIMARY KEY(Id_proformatmere)
+   Id_fournisseur INTEGER NOT NULL ,
+   PRIMARY KEY(Id_proformatmere),
+   FOREIGN KEY(Id_fournisseur) REFERENCES fournisseur(Id_fournisseur)
 );
 CREATE TABLE proformat(
    Id_proformat SERIAL,
@@ -83,11 +85,9 @@ CREATE TABLE proformat(
    quantite DOUBLE PRECISION,
    prixunitaire DOUBLE PRECISION,
    tva DOUBLE PRECISION,
-   Id_fournisseur INTEGER NOT NULL,
    Id_article INTEGER NOT NULL,
    PRIMARY KEY(Id_proformat),
    FOREIGN KEY (Id_proformatmere) REFERENCES proformatmere(Id_proformatmere),
-   FOREIGN KEY(Id_fournisseur) REFERENCES fournisseur(Id_fournisseur),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
 
@@ -101,3 +101,14 @@ CREATE TABLE besoin(
    FOREIGN KEY(Id_Departement) REFERENCES Departement(Id_Departement),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
+
+CREATE TABLE BandeCommandeDetail(
+    Id_bande_commande SERIAL PRIMARY KEY,
+    quantite DOUBLE PRECISION ,
+    Id_article INTEGER NOT NULL REFERENCES Article(Id_article) ,
+    Id_fournisseur INTEGER NOT NULL REFERENCES Fournisseur(Id_fournisseur) ,
+    prixht DOUBLE PRECISION ,
+    tva DOUBLE PRECISION , 
+    dateproformat date ,
+    dateBandecommade date 
+) ;

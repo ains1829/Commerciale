@@ -1,0 +1,13 @@
+.menu {
+  background: var(--blue);
+  width: 15%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.menu span a {
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 5px;
+}/*# sourceMappingURL=menu.css.map */

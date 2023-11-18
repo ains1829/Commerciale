@@ -1,0 +1,48 @@
+alaina ny prix TTC ana article tsirairay 
+if(AllExistArticle(Groupement) == true){
+    for(Groupement){
+        int compter= 0;
+        whilte(Croupement[besoin].quantite!=0){
+            id_fournisseur [] ;
+            ProformatIdfousniseur = getProformatById_fournisseur(id_fournisseur[compter]);
+            if(Croupement[besoin].article ==ProformatIdfousniseur.getarticle()){
+                if(Croupement[besoin].quantite < article[compter].quantite){
+                    Croupement[besoin].quantite = Croupement[besoin].quantite - article[compter] 
+                    BandeCommande(Croupement[besoin].quantite , Groupement[i].article , Groupement[i].id_fournisseur , Groupement[i].prixht , Groupement[i].tva , Groupement[i].dateproformat , current_date) ;
+                }else{
+                    article[compter].quantite -= Croupement[besoin].quantite ;
+                    BandeCommande(article[compter].quantite , Groupement[i].article , Groupement[i].id_fournisseur , Groupement[i].prixht , Groupement[i].tva , Groupement[i].dateproformat , current_date) ;
+                    Croupement[besoin].quantite = 0 ; 
+                }
+            }
+            compter ++ ;
+        }
+    }
+}
+
+giveMontant(data){
+    double totalmontant = 0 ;
+    if(AllExistArticle(Groupement) == true){
+        for(Groupement){
+            int compter= 0;
+            GetProformatAll par article = getProformatAll(date)\
+            whilte(Croupement[besoin].quantite!=0){
+                if(Croupement[besoin].article == article[compter].article){
+                    if(Croupement[besoin].quantite < article[compter].quantite){
+                        Croupement[besoin].quantite = Croupement[besoin].quantite - article[compter] 
+                        totalmontant += Croupement[besoin].quantite * (prixht + ((prixht * tva)/100) ) ;
+                    }else{
+                        article[compter].quantite -= Croupement[besoin].quantite ;
+                        totalmontant += Croupement[besoin].quantite * (prixht + ((prixht * tva)/100) ) ;
+                        Croupement[besoin].quantite = 0 ; 
+                    }
+                }
+            }
+        }
+    }
+    return totalmontant ;
+}
+
+if(DateIsNotExist(date)){
+    giveMontant(date)
+}

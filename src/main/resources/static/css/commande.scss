@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "poppins";
+    src: url('../font/Poppins-Light.ttf');
+}
+:root{
+    --blue : rgb(1 64 81) ;
+    --turquoise : #0199be; 
+    --darkturquoise : #0199be ;
+}
+body{
+    font-family: "poppins";
+    margin: 0;
+    padding: 0;
+}
+.container-page{
+    display: flex;
+}
+.commande{
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    table{
+        text-align: center;
+        th{
+            color: var(--blue);
+        }
+        th , td{
+            padding: 10px;
+        }
+    }
+}

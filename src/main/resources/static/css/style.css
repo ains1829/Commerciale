@@ -1,0 +1,68 @@
+@font-face {
+  font-family: "poppins";
+  src: url("../font/Poppins-Light.ttf");
+}
+:root {
+  --blue: rgb(1 64 81) ;
+  --turquoise: #0199be;
+  --darkturquoise: #0199be ;
+}
+
+body {
+  background-image: url("../image/v915-mynt-004-g.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "poppins";
+}
+
+.commerciale-login {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  justify-content: space-evenly;
+  margin-left: auto;
+}
+.commerciale-login .bienvenue {
+  font-size: 60px;
+  color: var(--blue);
+  font-weight: bold;
+  width: 50%;
+  font-weight: bold;
+}
+.commerciale-login .form form {
+  display: flex;
+  flex-direction: column;
+}
+.commerciale-login .form form div {
+  display: flex;
+  flex-direction: column;
+}
+.commerciale-login .form form div label {
+  font-size: 13px;
+}
+.commerciale-login .form form div input {
+  font-family: "poppins";
+  width: 250px;
+  padding: 12px;
+  outline: none;
+  border-radius: 8px;
+  border: none;
+  background: rgba(210, 210, 210, 0.648);
+}
+.commerciale-login .form form div input[type=submit] {
+  margin-top: 8px;
+  padding: 13px;
+  width: 270px;
+  color: white;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  background: var(--darkturquoise);
+  cursor: pointer;
+}
+.commerciale-login .form form span {
+  color: var(--turquoise);
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 10px;
+}/*# sourceMappingURL=style.css.map */

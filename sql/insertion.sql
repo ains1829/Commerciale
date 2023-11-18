@@ -56,18 +56,31 @@ insert into besoin (datebesoin , quantite , Id_Departement , Id_article) values
     (current_date , 40 ,  2 , 1) ,
     (current_date , 50 , 3 , 4) ;
 
-insert into proformatmere (dateproformat , nomproformatmere) values
-    (current_date , 'Proformat Jumbo score') ,
-    (current_date ,'Proformat Super U') ,
-    (current_date ,'Proformat Ains') ;
+insert into proformatmere (dateproformat , nomproformat , Id_fournisseur) values
+    (current_date , 'Proformat Jumbo score' , 1 ) ,
+    (current_date ,'Proformat Super U' , 2) ,
+    (current_date ,'Proformat Ains' , 3) ;
 
-insert into proformat (Id_proformatmere , quantite , prixunitaire , tva , Id_fournisseur , Id_article) values 
-    (1 , 20 , '500000',15,1,1),
-    (2 , 10 , '600000' , 15 ,2,1),
-    (3 , 5 , '600000' , 0 ,3,1),
-    (3,50,'2000',15,3,4);
+insert into proformat (Id_proformatmere , quantite , prixunitaire , tva , Id_article) values 
+    (1 , 20 , '500000',15,1),
+    (2 , 10 , '600000' , 15 ,1),
+    (3 , 5 , '600000' , 0 ,1),
+    (3,50,'2000',15,4);
 
 CREATE OR REPLACE VIEW proformat_view as
-    SELECT proformat.Id_proformatmere , proformatmere.dateproformat , proformatmere.nomproformatmere , proformat.id_proformat , proformat.quantite , proformat.prixunitaire , proformat.tva , proformat.id_fournisseur , proformat.id_article FROM proformatmere JOIN 
+    SELECT proformat.Id_proformatmere , proformatmere.dateproformat , proformatmere.nomproformat , proformat.id_proformat , proformat.quantite , proformat.prixunitaire , proformat.tva , proformatmere.id_fournisseur , proformat.id_article FROM proformatmere JOIN 
         proformat on 
             (proformatmere.Id_proformatmere = proformat.Id_proformatmere);
+
+CREATE OR REPLACE VIEW _notcoast as 
+    SELECT * FROM proformat_view order by dateproformat desc , (prixunitaire + ((prixunitaire *tva)/100)) asc;
+
+CREATE OR REPLACE VIEW simple_groupement as
+    SELECT datebesoin , sum(quantite) as quantite , id_article , havebesoin FROM besoin 
+        GROUP BY datebesoin , id_article , havebesoin;
+
+-- test
+insert into proformatmere (dateproformat , nomproformat , Id_fournisseur) values
+    ('2023-11-17' , 'Proformat Jumbo score' , 1 ) , ('2023-11-17' ,'Proformat Super U' , 2) ;
+insert into proformat (Id_proformatmere , quantite , prixunitaire , tva , Id_article) values 
+    (4 , 20 , '500000',15,1),(5 , 10 , '600000' , 15 ,1);
