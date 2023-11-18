@@ -1,32 +1,66 @@
-let dynamicFieldsCount = 1;
+let dynamicFieldsCount = 2;
 
-function addFields() {
-    const dynamicFieldsDiv = document.getElementById('dynamicFields');  
+async function addFields() {
+    const dynamicFieldsDiv = document.getElementById('dynamicFields'); 
+        const fieldP=document.createElement('p');
         const fieldDiv = document.createElement('div');
-        fieldDiv.innerHTML = `
-            <label for="quantite${dynamicFieldsCount}">Quantité:</label>
-            <input type="text" id="quantite${dynamicFieldsCount}" name="quantite${dynamicFieldsCount}">
-            
-            <label for="prixunitaire${dynamicFieldsCount}">Prix Unitaire:</label>
-            <input type="text" id="prixunitaire${dynamicFieldsCount}" name="prixunitaire${dynamicFieldsCount}">
-            
-            <label for="tva${dynamicFieldsCount}">TVA:</label>
-            <input type="text" id="tva${dynamicFieldsCount}" name="tva${dynamicFieldsCount}">
-            
-            <label for="Id_article${dynamicFieldsCount}">ID Article:</label>
-            <input type="text" id="Id_article${dynamicFieldsCount}" name="Id_article${dynamicFieldsCount}">
+        fieldDiv.innerHTML =`
+        <label for="Id_article${dynamicFieldsCount}">Article:</label>
         `;
-        dynamicFieldsDiv.appendChild(fieldDiv);
+        fieldDiv.id="dynamicFields2";
+        const selectElement = document.createElement('select');
+        selectElement.name = `Id_article${dynamicFieldsCount}`;
+        selectElement.id = `Id_article${dynamicFieldsCount}`;
+        var articles;
+        await fetch('/getArticles', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Gérer la réponse du serveur si nécessaire
+            articles=data;
+            if(articles!=null){
+                articles.forEach( article => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = article.id_article;
+                    optionElement.textContent = article.nom;
+                    selectElement.appendChild(optionElement);
+                });
+            }
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+                     //   <option value="+article.getId_article()"> article.getNom </option><%
+        fieldDiv.appendChild(selectElement);
+        fieldDiv.innerHTML += `
+        <label for="quantite${dynamicFieldsCount}">Quantité:</label>
+        <input type="text" id="quantite${dynamicFieldsCount}" name="quantite${dynamicFieldsCount}">
+        
+        <label for="prixunitaire${dynamicFieldsCount}">Prix Unitaire:</label>
+        <input type="text" id="prixunitaire${dynamicFieldsCount}" name="prixunitaire${dynamicFieldsCount}">
+        
+        <label for="tva${dynamicFieldsCount}">TVA:</label>
+        <input type="text" id="tva${dynamicFieldsCount}" name="tva${dynamicFieldsCount}">
+        `;
+        fieldP.appendChild(fieldDiv);
+        dynamicFieldsDiv.appendChild(fieldP);
         dynamicFieldsCount++;
 }
 
 function removeFields() {
-    const dynamicFieldsDiv = document.getElementById('dynamicFields');
-        const lastField = dynamicFieldsDiv.lastChild;
-        if (lastField) {
-            dynamicFieldsDiv.removeChild(lastField);
-            dynamicFieldsCount--;
-        }
+    if(dynamicFieldsCount>2){
+        const dynamicFieldsDiv = document.getElementById('dynamicFields');
+            const lastField = dynamicFieldsDiv.lastChild;
+            if (lastField) {
+                dynamicFieldsDiv.removeChild(lastField);
+                dynamicFieldsCount--;
+            }
+    }
 }
 
 function submitForm() {
