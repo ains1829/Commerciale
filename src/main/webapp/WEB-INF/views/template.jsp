@@ -108,6 +108,32 @@
         flex: 1;
         margin-right: 10px;
     }
+    /*tableau*/
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f0f2f5;
+    }
+    .super-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333; /* Couleur de texte de votre choix */
+            text-align: center;
+    }
 </style>
 <body>
 <div class="content">

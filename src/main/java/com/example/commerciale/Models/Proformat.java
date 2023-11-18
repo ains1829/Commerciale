@@ -1,8 +1,12 @@
 package com.example.commerciale.Models;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.commerciale.service.ProformatService;
 
@@ -98,16 +102,18 @@ public class Proformat  {
 		catch(Exception e){ throw new Exception("id_article:"+id_article+" invalide"); }
 		setId_article(Integer.valueOf(id_article));
 	}
-
-	public void insertion(ProformatService proformatservice)throws Exception{
-			if(this.Id_proformatmere<=0){ throw new Exception("proformatmere(id:"+this.Id_proformatmere+") invalide"); }
+	public void verificationfieldsdebase()throws Exception{
 			if(this.quantite<=0){ throw new Exception("quantite doit etre > 0"); }
 			if(prixunitaire<=0){ throw new Exception("quantite doit etre > 0"); }
 			if(this.tva< 0 || this.tva > 100){ throw new Exception("quantite doit etre entre > ou = 0 et < ou = 100"); }
 			if(this.Id_article<=0){ throw new Exception("article(id:"+this.Id_article+") invalide"); }
+	}
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+	public void insertion(ProformatService proformatservice)throws Exception{
+		if(this.Id_proformatmere<=0){ throw new Exception("proformatmere(id:"+this.Id_proformatmere+") invalide"); }
+			verificationfieldsdebase();
 			proformatservice.saveProformat(this);
 	}
-
    
 }
 

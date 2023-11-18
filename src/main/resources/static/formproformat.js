@@ -118,10 +118,12 @@ async function submitForm() {
         // Gérer la réponse du serveur si nécessaire
         console.log('Success:', data);
         const erreurValue = getParameterByName('erreur', data.url);
+        const p_erreur = document.getElementById('erreur'); 
         if (erreurValue) {
             console.log('Erreur:', erreurValue);
-            const p_erreur = document.getElementById('erreur'); 
             p_erreur.innerText=erreurValue;
+        }else{
+            p_erreur.innerText="";
         }
     })
     .catch((error) => {

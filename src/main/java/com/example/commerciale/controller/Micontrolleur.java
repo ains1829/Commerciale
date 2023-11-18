@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.commerciale.Models.Article;
 import com.example.commerciale.Models.Proformat;
+import com.example.commerciale.Models.ProformatDetail;
 import com.example.commerciale.Models.Proformatmere;
+import com.example.commerciale.Models.ProformatmereDetail;
 import com.example.commerciale.bodyrequest.Proformatsbody;
 import com.example.commerciale.service.ArticleService;
 import com.example.commerciale.service.FournisseurService;
@@ -69,6 +71,23 @@ public class Micontrolleur {
     @PostMapping("/getArticles")
     public ResponseEntity<?> getArticles() {
         return ResponseEntity.ok(articleService.getAllArticles());
+    }
+    @GetMapping("/voirproformatmeres")
+    public String voirproformatmere(HttpServletRequest request){
+        ProformatmereDetail[] proformatmereDetails=new ProformatmereDetail().getAllProformatDetail(proformatmereService, fournisseurService);
+        if(proformatmereDetails!=null){
+            System.out.println(proformatmereDetails.length);
+        }
+        request.setAttribute("proformatmereDetails", proformatmereDetails);
+        request.setAttribute("content", "proformatmeres.jsp");
+        return "template";
+    }
+    @GetMapping("/voidetailByIdproformatmere")
+    public String voidetailByIdproformatmere(@RequestParam(name = "Id_proformatmere",defaultValue = "0") String Id_proformatmere ,HttpServletRequest request){
+        ProformatDetail[] proformatDetails=new ProformatDetail().getProformatDetailsById_proformatmere(proformatService, articleService, Integer.valueOf(Id_proformatmere));
+        request.setAttribute("proformatDetails", proformatDetails);
+        request.setAttribute("content", "proformatdetails.jsp");
+        return "template";
     }
 
 }

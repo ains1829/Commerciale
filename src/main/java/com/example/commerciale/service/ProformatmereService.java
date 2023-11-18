@@ -2,6 +2,8 @@ package com.example.commerciale.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.commerciale.Models.Proformatmere;
 import com.example.commerciale.repository.ProformatmereRepository;
@@ -17,6 +19,7 @@ public class ProformatmereService {
     private ProformatmereRepository proformatmereRepository;
 
     // Méthode pour enregistrer un Proformat
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     public Proformatmere saveProformatmere(Proformatmere proformatmere) {
         return proformatmereRepository.save(proformatmere);
     }

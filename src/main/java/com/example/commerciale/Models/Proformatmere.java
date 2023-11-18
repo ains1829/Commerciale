@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 @Entity
 public class Proformatmere  {
@@ -69,23 +70,27 @@ public class Proformatmere  {
 		catch(Exception e){ throw new Exception("id_fournisseur:"+id_fournisseur+" invalide"); }
 		setId_fournisseur(Integer.valueOf(id_fournisseur));
 	}
-	@Transactional
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	public void insererProformatmereAndAllProformat(ProformatService proformatservice,ProformatmereService proformatmereService,Proformat[] proformats)throws Exception{
-		if(proformats==null){ throw new Exception("proformat vide"); }
-		if(this.dateproformat.after(Date.valueOf(LocalDate.now()))==true){ throw new Exception("Date proformat doit etre <= a aujourd\'hui ("+LocalDate.now().toString()+")"); }
-		if(this.Id_fournisseur<=0){ throw new Exception("fournisseur(id:"+this.Id_fournisseur+") invalide"); }
-		//--Tsy afaka mi-inserer in-2 anaty date iray ho an'ny fournisseur iray
-		List<Proformatmere> lstpm=proformatmereService.findProformatmereByDateproformat(dateproformat);
-		for(int i=0;i<lstpm.size();i++){
-			if(lstpm.get(i).getId_fournisseur()==this.Id_fournisseur){
-				throw new Exception("proformat existe deja a la date:"+this.dateproformat.toString()+" pour idfournisseur:"+this.Id_fournisseur); 
+			if(proformats==null){ throw new Exception("proformat vide"); }
+			if(proformats.length==0){ throw new Exception("proformat vide"); }
+			if(this.dateproformat.after(Date.valueOf(LocalDate.now()))==true){ throw new Exception("Date proformat doit etre <= a aujourd\'hui ("+LocalDate.now().toString()+")"); }
+			if(this.Id_fournisseur<=0){ throw new Exception("fournisseur(id:"+this.Id_fournisseur+") invalide"); }
+			//--Tsy afaka mi-inserer in-2 anaty date iray ho an'ny fournisseur iray
+			List<Proformatmere> lstpm=proformatmereService.findProformatmereByDateproformat(dateproformat);
+			for(int i=0;i<lstpm.size();i++){
+				if(lstpm.get(i).getId_fournisseur()==this.Id_fournisseur){
+					throw new Exception("proformat existe deja a la date:"+this.dateproformat.toString()+" pour idfournisseur:"+this.Id_fournisseur); 
+				}
 			}
-		}
-		Proformatmere proformatmere=proformatmereService.saveProformatmere(this);
-		for(int i=0;i<proformats.length;i++){
-			proformats[i].setId_proformatmere(proformatmere.getId_proformatmere());
-			proformats[i].insertion(proformatservice);
-		}
+			for(int i=0;i<proformats.length;i++){
+				proformats[i].verificationfieldsdebase();
+			}
+			Proformatmere proformatmere=proformatmereService.saveProformatmere(this);
+			for(int i=0;i<proformats.length;i++){
+				proformats[i].setId_proformatmere(proformatmere.getId_proformatmere());
+				proformats[i].insertion(proformatservice);
+			}
 	}
 	
 }

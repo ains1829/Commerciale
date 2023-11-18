@@ -8,12 +8,6 @@
 %>
     <form id="myForm">
         <h1>Insertion de Pro-format</h1>
-        <p style="color:red;"><%
-            if(request.getAttribute("erreur")!=null){
-                out.println(request.getAttribute("erreur"));
-            }
-            %>
-        </p>
         <div>
             <label for="dateproformat">Date Proformat:</label>
             <input type="date" id="dateproformat" name="dateproformat">
@@ -57,5 +51,6 @@
         <button class="buttonAdd" type="button" onclick="addFields()">Ajouter</button>
         <button class="buttonDel" type="button" onclick="removeFields()">Effacer</button></br></br>
         <button class="buttonOk" type="button" onclick="submitForm()">Envoyer</button></br>
+        <p><a href="/voirproformatmeres">Listes des proformats</a></p>
         <p id="erreur" style="color:red;"></p>
     </form>
