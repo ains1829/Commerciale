@@ -19,6 +19,15 @@ public class Proformat  {
 	public Proformat() {
 	}
 
+	public Proformat(String id_proformat, String id_proformatmere,String quantite,String prixunitaire,String tva,String id_article)throws Exception{
+		setId_proformat(id_proformatmere);
+		setId_proformatmere(id_proformatmere);
+		setQuantite(quantite);
+		setPrixunitaire(prixunitaire);
+		setTva(tva);
+		setId_article(id_article);
+	}
+
 	public int getId_proformat() {
 		return Id_proformat;
 	}

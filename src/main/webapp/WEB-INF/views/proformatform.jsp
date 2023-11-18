@@ -8,6 +8,12 @@
 %>
     <form id="myForm">
         <h1>Insertion de Pro-format</h1>
+        <p style="color:red;"><%
+            if(request.getAttribute("erreur")!=null){
+                out.println(request.getAttribute("erreur"));
+            }
+            %>
+        </p>
         <div>
             <label for="dateproformat">Date Proformat:</label>
             <input type="date" id="dateproformat" name="dateproformat">

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.commerciale.Models.Proformatmere;
 import com.example.commerciale.repository.ProformatmereRepository;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,9 @@ public class ProformatmereService {
     public List<Proformatmere> getAllProformatmeres() {
         return proformatmereRepository.findAll();
     }
-
+    public List<Proformatmere> findProformatmereByDateproformat( Date dateproformat) {
+        return proformatmereRepository.findByDateproformat(dateproformat);
+    }
     // Méthode pour récupérer un Proformatmere par son ID
     public Optional<Proformatmere> getProformatmereById(int id) {
         return proformatmereRepository.findById(id);

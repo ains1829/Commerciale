@@ -6,4 +6,5 @@ import com.example.commerciale.Models.Proformat;
 
 public interface ProformatRepository extends JpaRepository<Proformat, Integer> {
     // Vous pouvez ajouter des méthodes personnalisées ici si nécessaire
+    
 }

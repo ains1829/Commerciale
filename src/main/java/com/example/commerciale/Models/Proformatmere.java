@@ -2,11 +2,14 @@ package com.example.commerciale.Models;
 import com.example.commerciale.service.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.transaction.annotation.Transactional;
 @Entity
 public class Proformatmere  {
 	@Id
@@ -17,6 +20,14 @@ public class Proformatmere  {
 	int Id_fournisseur;
 	public Proformatmere() {
 	}
+	
+	public Proformatmere(String id_proformatmere, String dateproformat, String nomproformat, String id_fournisseur)throws Exception {
+		setId_fournisseur(id_fournisseur);
+		setDateproformat(dateproformat);
+		setNomproformat(nomproformat);
+		setId_fournisseur(id_fournisseur);
+	}
+
 	public int getId_proformatmere() {
 		return Id_proformatmere;
 	}
@@ -58,10 +69,18 @@ public class Proformatmere  {
 		catch(Exception e){ throw new Exception("id_fournisseur:"+id_fournisseur+" invalide"); }
 		setId_fournisseur(Integer.valueOf(id_fournisseur));
 	}
+	@Transactional
 	public void insererProformatmereAndAllProformat(ProformatService proformatservice,ProformatmereService proformatmereService,Proformat[] proformats)throws Exception{
 		if(proformats==null){ throw new Exception("proformat vide"); }
 		if(this.dateproformat.after(Date.valueOf(LocalDate.now()))==true){ throw new Exception("Date proformat doit etre <= a aujourd\'hui ("+LocalDate.now().toString()+")"); }
 		if(this.Id_fournisseur<=0){ throw new Exception("fournisseur(id:"+this.Id_fournisseur+") invalide"); }
+		//--Tsy afaka mi-inserer in-2 anaty date iray ho an'ny fournisseur iray
+		List<Proformatmere> lstpm=proformatmereService.findProformatmereByDateproformat(dateproformat);
+		for(int i=0;i<lstpm.size();i++){
+			if(lstpm.get(i).getId_fournisseur()==this.Id_fournisseur){
+				throw new Exception("proformat existe deja a la date:"+this.dateproformat.toString()+" pour idfournisseur:"+this.Id_fournisseur); 
+			}
+		}
 		Proformatmere proformatmere=proformatmereService.saveProformatmere(this);
 		for(int i=0;i<proformats.length;i++){
 			proformats[i].setId_proformatmere(proformatmere.getId_proformatmere());

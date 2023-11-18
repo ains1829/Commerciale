@@ -3,7 +3,6 @@ package com.example.commerciale.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.commerciale.Models.Article;
 import com.example.commerciale.Models.Fournisseur;
 import com.example.commerciale.repository.FournisseurRepository;
 
