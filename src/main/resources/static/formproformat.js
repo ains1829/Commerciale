@@ -62,8 +62,19 @@ function removeFields() {
             }
     }
 }
+// Récupérer la chaîne de requête de l'URL
 
-function submitForm() {
+// Fonction pour extraire la valeur d'un paramètre de la chaîne de requête
+const getParameterByName = (name, url) => {
+    if (!url) url = window.location.href;
+    name = name.replace(/[[\]]/g, "\\$&");
+    const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+};
+async function submitForm() {
     const proformatmere={ 
         id_proformatmere:"0",
         dateproformat: document.getElementById('dateproformat').value,
@@ -95,7 +106,7 @@ function submitForm() {
     };
     // Envoyer les données au contrôleur Spring Boot via une requête fetch
     console.log( JSON.stringify({proformatmerebody: proformatmere,proformatbodies: proformats}));
-    fetch('/saveproformats', {
+    await fetch('/saveproformats', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -106,6 +117,12 @@ function submitForm() {
     .then(data => {
         // Gérer la réponse du serveur si nécessaire
         console.log('Success:', data);
+        const erreurValue = getParameterByName('erreur', data.url);
+        if (erreurValue) {
+            console.log('Erreur:', erreurValue);
+            const p_erreur = document.getElementById('erreur'); 
+            p_erreur.innerText=erreurValue;
+        }
     })
     .catch((error) => {
         console.error('Error:', error);

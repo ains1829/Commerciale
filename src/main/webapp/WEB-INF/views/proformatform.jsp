@@ -57,4 +57,5 @@
         <button class="buttonAdd" type="button" onclick="addFields()">Ajouter</button>
         <button class="buttonDel" type="button" onclick="removeFields()">Effacer</button></br></br>
         <button class="buttonOk" type="button" onclick="submitForm()">Envoyer</button></br>
+        <p id="erreur" style="color:red;"></p>
     </form>
