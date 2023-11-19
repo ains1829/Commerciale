@@ -79,6 +79,23 @@ CREATE OR REPLACE VIEW simple_groupement as
     SELECT datebesoin , sum(quantite) as quantite , id_article , havebesoin FROM besoin 
         GROUP BY datebesoin , id_article , havebesoin;
 
+CREATE OR REPLACE VIEW Member as
+    SELECT membre.id_membre , membre.nom , membre.email , membre.dtn , membre.mdp , profil.name_profil as 
+        profil, departement.nom as departement FROM membre JOIN departement ON 
+            (membre.id_departement = departement.id_departement) JOIN profil ON (membre.profil  = profil.id_profil);
+
+
+-- create table for notifications
+CREATE TABLE Groupement_date_etat(
+    idgroupement serial PRIMARY KEY ,
+    datebesoin date ,
+    etat int 
+) ;
+
+insert into groupement_date_etat(datebesoin , etat) values('2023-11-16' , 0) ;
+
+-- etat 10 accept par finance and 100 accept par DSI and generate bandecommande
+
 -- test
 insert into proformatmere (dateproformat , nomproformat , Id_fournisseur) values
     ('2023-11-17' , 'Proformat Jumbo score' , 1 ) , ('2023-11-17' ,'Proformat Super U' , 2) ;

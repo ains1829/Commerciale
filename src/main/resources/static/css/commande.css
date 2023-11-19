@@ -6,29 +6,68 @@
   --blue: rgb(1 64 81) ;
   --turquoise: #0199be;
   --darkturquoise: #0199be ;
+  --body: rgb(213 247 255 / 10%) ;
+  --white: rgb(255 255 255) ;
 }
 
 body {
   font-family: "poppins";
   margin: 0;
   padding: 0;
+  background: var(--body);
 }
 
 .container-page {
   display: flex;
 }
 
-.commande {
+.content-commande {
+  margin-left: 18%;
   display: flex;
   flex-direction: column;
-  width: 800px;
 }
-.commande table {
+.content-commande .commande {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  box-shadow: 0px 0px 6px 1px rgba(214, 214, 214, 0.4);
+  border-radius: 15px;
+  width: 950px;
+  background: var(--white);
+  padding: 25px;
+  margin-bottom: 10px;
+}
+.content-commande .commande span {
+  padding-bottom: 10px;
+}
+.content-commande .commande .fournisseur, .content-commande .commande .manager {
+  color: var(--turquoise);
+  font-weight: bold;
+  font-size: 13px;
+}
+.content-commande .commande .somme {
+  color: black;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 18px;
+  padding-bottom: 20px;
+}
+.content-commande .commande .date {
+  font-weight: bold;
+  font-size: 12px;
+}
+.content-commande .commande .arreter {
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: bold;
+}
+.content-commande .commande table {
   text-align: center;
 }
-.commande table th {
+.content-commande .commande table th {
   color: var(--blue);
 }
-.commande table th, .commande table td {
+.content-commande .commande table th, .content-commande .commande table td {
   padding: 10px;
+  font-size: 14px;
 }/*# sourceMappingURL=commande.css.map */

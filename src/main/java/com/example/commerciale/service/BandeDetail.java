@@ -48,21 +48,70 @@ public class BandeDetail {
         double quantite = 0 ;
         Date date = proformatRepository.getDatemax() ;
         List<Proformatmain> detailproformat = serviceDetail.getProformatDetail(); 
+        System.out.println("taille : " + detailproformat.size());
         for (int i = 0; i < detailproformat.size(); i++) {
-            if((detailproformat.get(i).getId_article() == id_article) && (detailproformat.get(i).getDateproformat().equals(date))){
+            System.out.println(detailproformat.get(i).getId_article() + "   " + detailproformat.get(i).getQuantite());
+            if((detailproformat.get(i).getId_article() == id_article) && (detailproformat.get(i).getDateproformat().equals(date) == true)){
+                System.out.println(detailproformat.get(i).getQuantite());
                 quantite += detailproformat.get(i).getQuantite() ;
             }
         }
+        System.out.println("idarticle = "  + id_article + " : " +   quantite);
+        System.out.println("----------------------------");
         return quantite ;
     }
     public boolean CanhaveBande(Date datess){
         List<Besoinmain> groupemet = groupement.getBesoinAllBydate(datess) ;
         for (int i = 0; i < groupemet.size(); i++) {
             if(quanite_date_idarticle(groupemet.get(i).getId_article()) < groupemet.get(i).getQuantite()){
+                System.out.println("id : = " + groupemet.get(i).getId_article());
                 return false ;
+            }else{
+                System.out.println("id ??: = " + groupemet.get(i).getId_article());
             }
         }   
         return true ;
+    }
+    public boolean fournisseur_thisDate(int id_fournisseur , Date datemere){
+        List<Bandecommandedetail> alldetails = getDetails() ;
+        for (int i = 0; i < alldetails.size(); i++) {
+            if((alldetails.get(i).getDateBandecommade().equals(datemere) == true) && (alldetails.get(i).getId_fournisseur() == id_fournisseur)){
+                return true ;
+            }
+        }
+        return false ;
+    }
+    public List<Bandecommandedetail> MyCommande(int id_fournisseur, Date date_mere){
+        List <Bandecommandedetail> about_fournisseur_date = new ArrayList<Bandecommandedetail>() ;
+        List <Bandecommandedetail> all = getDetails() ;
+        for (int i = 0; i < all.size(); i++) {
+            if((all.get(i).getId_fournisseur() == id_fournisseur) && (all.get(i).getDateBandecommade().equals(date_mere) == true)){
+                about_fournisseur_date.add(all.get(i)) ;
+            }
+        }
+        return about_fournisseur_date  ; 
+    }
+    public double SommeMyCommande(int id_fournisseur, Date date_mere){
+        double somme = 0 ;
+        List <Bandecommandedetail> all = getDetails() ;
+        for (int i = 0; i < all.size(); i++) {
+            if((all.get(i).getId_fournisseur() == id_fournisseur) && (all.get(i).getDateBandecommade().equals(date_mere) == true)){
+                somme +=  TTC(all.get(i).getTva() , all.get(i).getPrixht()) ;
+            }
+        }
+        return somme  ; 
+    }
+    public double TTC(double tva , double prixht) {
+        return (prixht + ((prixht *tva)/100)) ;
+    }
+    public List<Integer> all_fournisseur(){
+        return repositoryBande.getMereFournisseur() ;
+    }
+    public List<Date> all_date(){
+        return repositoryBande.getDateMere() ;
+    }
+    public String getNameArticle(int id_article){
+        return repositoryBande.Namearticle(id_article) ;
     }
     public double getMontant(Date datess){
         double totalmontant = 0 ;

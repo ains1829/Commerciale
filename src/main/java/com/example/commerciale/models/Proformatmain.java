@@ -4,15 +4,18 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Immutable;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 @Entity 
 @Table(name = "_notcoast")
 public class Proformatmain {
-    @Id
     int id_proformatmere ;
     Date dateproformat ;
     String nomproformat  ;
+    @Id
     int id_proformat ;
     double quantite ;
     double prixunitaire ;

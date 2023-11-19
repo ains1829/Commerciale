@@ -1,3 +1,5 @@
+<%@ page import="com.example.commerciale.models.Membre" %>
+<%@ page import="javax.servlet.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +9,19 @@
 </head>
 <body>
     <div class="menu">
-        <span><a href="">Notification</a></span>
-        <span><a href="">Bande de commande</a></span>
-        <span><a href="">Se Deconnecter</a></span>
+        <div class="User">
+            <img src="/image/5856-removebg-preview.png" alt="">
+            <%
+                Membre membrelogin = (Membre) session.getAttribute("aboutmember") ;
+            %>
+            <span><%=membrelogin.getEmail()%></span> 
+        </div>
+        <div class="content-menu">
+            <span><a href="/main/notification">Notification</a></span>
+            <span><a href="">Proformat</a></span>
+            <span><a href="/main/commande">Bandecommande</a></span>
+            <span><a href="/main/maPage">Se Deconnecter</a></span>
+        </div>
     </div>
 </body>
 </html>

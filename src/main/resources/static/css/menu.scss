@@ -3,13 +3,34 @@
     width: 15%;
     height: 100vh;
     display: flex;
+    box-shadow: 0px 0px 4px 3px gray;
     flex-direction: column;
-    span{
-        a{
+    position: fixed;
+    .User{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+            width: 100px;
+        }
+        span{
             color: white;
+            font-size: 19px;
+        }
+    }
+    .content-menu{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        span{
+            a{
+                color: white;
+                text-decoration: none;
+            }
             font-size: 15px;
-            text-decoration: none;
-            padding: 5px;
+            padding-bottom: 20px;
+            transform: translateX(10px);
         }
     }
 }

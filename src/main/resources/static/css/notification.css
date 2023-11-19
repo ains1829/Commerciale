@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "poppins";
+  src: url("../font/Poppins-Light.ttf");
+}
+:root {
+  --blue: rgb(1 64 81) ;
+  --turquoise: #0199be;
+  --darkturquoise: #0199be ;
+  --body: rgb(213 247 255 / 10%) ;
+  --white: rgb(255 255 255) ;
+}
+
+body {
+  font-family: "poppins";
+  margin: 0;
+  padding: 0;
+  background: var(--body);
+}
+
+.container-page {
+  display: flex;
+}
+
+.content-notification {
+  margin-left: 18%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.content-notification .notification {
+  margin-top: 8px;
+  width: 300px;
+  background: var(--white);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 6px 1px rgba(214, 214, 214, 0.4);
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.content-notification .notification .besoin {
+  color: var(--darkturquoise);
+  font-weight: bold;
+  font-size: 12px;
+  padding-bottom: 5px;
+}
+.content-notification .notification .date {
+  font-weight: bold;
+  font-size: 13px;
+  padding-bottom: 5px;
+}
+.content-notification .notification .somme {
+  text-align: center;
+  font-size: 17px;
+  color: rgba(79, 255, 79, 0.53);
+  font-weight: bold;
+}
+.content-notification .notification span a {
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--blue);
+  font-weight: bold;
+}/*# sourceMappingURL=notification.css.map */
