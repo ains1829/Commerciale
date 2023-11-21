@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.commerciale.Models.Article;
-import com.example.commerciale.Models.Proformat;
+import com.example.commerciale.Models.ArticleMi;
+import com.example.commerciale.Models.ProformatMi;
 import com.example.commerciale.Models.ProformatDetail;
-import com.example.commerciale.Models.Proformatmere;
+import com.example.commerciale.Models.ProformatmereMi;
 import com.example.commerciale.Models.ProformatmereDetail;
 import com.example.commerciale.bodyrequest.Proformatsbody;
-import com.example.commerciale.service.ArticleService;
-import com.example.commerciale.service.FournisseurService;
-import com.example.commerciale.service.ProformatService ;
-import com.example.commerciale.service.ProformatmereService;
+import com.example.commerciale.service.ArticleMiService;
+import com.example.commerciale.service.FournisseurMiService;
+import com.example.commerciale.service.ProformatMiService ;
+import com.example.commerciale.service.ProformatmereMiService;
 
 @Controller // Utiliser @Controller au lieu de @RestController
 public class Micontrolleur {
 
     @Autowired
-    private ArticleService articleService;
+    private ArticleMiService articleService;
     @Autowired
-    private FournisseurService fournisseurService;
+    private FournisseurMiService fournisseurService;
     @Autowired
-    private ProformatService proformatService;
+    private ProformatMiService proformatService;
     @Autowired
-    private ProformatmereService proformatmereService;
+    private ProformatmereMiService proformatmereService;
     @GetMapping("/")
     public String root(HttpServletRequest request,@RequestParam(name = "erreur", defaultValue = "") String erreur) {       
         request.setAttribute("articles",articleService.getTabAllArticles());
@@ -52,11 +52,11 @@ public class Micontrolleur {
             if(proformatsbody.getProformatbodies()!=null ){ nbchecked++;    }
             if(nbchecked==2){
                 System.out.println("date:"+proformatsbody.getProformatmerebody().getDateproformat()+" fournisseur:"+proformatsbody.getProformatmerebody().getId_fournisseur()+" nom:"+proformatsbody.getProformatmerebody().getNomproformat());
-                Proformatmere proformatmere=new Proformatmere("0", proformatsbody.getProformatmerebody().getDateproformat(), proformatsbody.getProformatmerebody().getNomproformat(), proformatsbody.getProformatmerebody().getId_fournisseur());
-                Proformat[] proformats=new Proformat[proformatsbody.getProformatbodies().size()];
+                ProformatmereMi proformatmere=new ProformatmereMi("0", proformatsbody.getProformatmerebody().getDateproformat(), proformatsbody.getProformatmerebody().getNomproformat(), proformatsbody.getProformatmerebody().getId_fournisseur());
+                ProformatMi[] proformats=new ProformatMi[proformatsbody.getProformatbodies().size()];
                 for(int i=0;i<proformatsbody.getProformatbodies().size();i++){
                     System.out.println("article:"+proformatsbody.getProformatbodies().get(i).getId_article()+" prix:"+proformatsbody.getProformatbodies().get(i).getPrixunitaire()+" quantite:"+proformatsbody.getProformatbodies().get(i).getQuantite()+" tva:"+proformatsbody.getProformatbodies().get(i).getTva());
-                    proformats[i]=new Proformat("0","0",proformatsbody.getProformatbodies().get(i).getQuantite(),proformatsbody.getProformatbodies().get(i).getPrixunitaire(),proformatsbody.getProformatbodies().get(i).getTva(),proformatsbody.getProformatbodies().get(i).getId_article());
+                    proformats[i]=new ProformatMi("0","0",proformatsbody.getProformatbodies().get(i).getQuantite(),proformatsbody.getProformatbodies().get(i).getPrixunitaire(),proformatsbody.getProformatbodies().get(i).getTva(),proformatsbody.getProformatbodies().get(i).getId_article());
                 }
                 proformatmere.insererProformatmereAndAllProformat(proformatService, proformatmereService, proformats);
             }

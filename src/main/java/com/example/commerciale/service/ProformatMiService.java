@@ -5,33 +5,33 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.commerciale.Models.Proformat;
-import com.example.commerciale.repository.ProformatRepository;
+import com.example.commerciale.Models.ProformatMi;
+import com.example.commerciale.repository.ProformatMiRepository;
 
 import java.util.List;
 import java.util.Optional;
 @Service
-public class ProformatService {
+public class ProformatMiService {
 
     @Autowired
-    private ProformatRepository proformatRepository;
+    private ProformatMiRepository proformatRepository;
 
     // Méthode pour enregistrer un Proformat
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public Proformat saveProformat(Proformat proformat) {
+    public ProformatMi saveProformat(ProformatMi proformat) {
         return proformatRepository.save(proformat);
     }
 
     // Méthode pour récupérer tous les Proformats
-    public List<Proformat> getAllProformats() {
+    public List<ProformatMi> getAllProformats() {
         return proformatRepository.findAll();
     }
-    public List<Proformat> getAllProformatsById_proformatmere(int id_proformatmere){
+    public List<ProformatMi> getAllProformatsById_proformatmere(int id_proformatmere){
         return proformatRepository.findByProformatMereId(id_proformatmere);
     }
 
     // Méthode pour récupérer un Proformat par son ID
-    public Optional<Proformat> getProformatById(int id) {
+    public Optional<ProformatMi> getProformatById(int id) {
         return proformatRepository.findById(id);
     }
 

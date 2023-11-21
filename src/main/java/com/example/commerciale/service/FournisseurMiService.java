@@ -3,30 +3,30 @@ package com.example.commerciale.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.commerciale.Models.Fournisseur;
-import com.example.commerciale.repository.FournisseurRepository;
+import com.example.commerciale.Models.FournisseurMi;
+import com.example.commerciale.repository.FournisseurMiRepository;
 
 import java.util.List;
 import java.util.Optional;
 @Service
-public class FournisseurService {
+public class FournisseurMiService {
 
     @Autowired
-    private FournisseurRepository fournisseurRepository;
+    private FournisseurMiRepository fournisseurRepository;
 
     // Méthode pour enregistrer un Fournisseur
-    public Fournisseur saveFournisseur(Fournisseur Fournisseur) {
+    public FournisseurMi saveFournisseur(FournisseurMi Fournisseur) {
         return fournisseurRepository.save(Fournisseur);
     }
 
     // Méthode pour récupérer tous les Fournisseurs
-    public List<Fournisseur> getAllFournisseurs() {
+    public List<FournisseurMi> getAllFournisseurs() {
         return fournisseurRepository.findAll();
     }
-    public Fournisseur[] getTabAllFournisseurs(){
-        List<Fournisseur> lstA=getAllFournisseurs();
+    public FournisseurMi[] getTabAllFournisseurs(){
+        List<FournisseurMi> lstA=getAllFournisseurs();
         if(lstA==null){ return null; }
-        Fournisseur[] fournisseurs=new Fournisseur[lstA.size()];
+        FournisseurMi[] fournisseurs=new FournisseurMi[lstA.size()];
         for(int i=0;i<lstA.size();i++){
             fournisseurs[i]=lstA.get(i);
         }
@@ -34,7 +34,7 @@ public class FournisseurService {
     }
 
     // Méthode pour récupérer un Fournisseur par son ID
-    public Optional<Fournisseur> getFournisseurById(int id) {
+    public Optional<FournisseurMi> getFournisseurById(int id) {
         return fournisseurRepository.findById(id);
     }
 

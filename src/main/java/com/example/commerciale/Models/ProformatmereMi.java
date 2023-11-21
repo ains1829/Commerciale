@@ -8,21 +8,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 @Entity
-public class Proformatmere  {
+@Table(name="proformatmere")
+public class ProformatmereMi  {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	int Id_proformatmere ;
 	Date dateproformat;
 	String nomproformat ;
 	int Id_fournisseur;
-	public Proformatmere() {
+	public ProformatmereMi() {
 	}
 	
-	public Proformatmere(String id_proformatmere, String dateproformat, String nomproformat, String id_fournisseur)throws Exception {
+	public ProformatmereMi(String id_proformatmere, String dateproformat, String nomproformat, String id_fournisseur)throws Exception {
 		setId_fournisseur(id_fournisseur);
 		setDateproformat(dateproformat);
 		setNomproformat(nomproformat);
@@ -71,13 +73,13 @@ public class Proformatmere  {
 		setId_fournisseur(Integer.valueOf(id_fournisseur));
 	}
 	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-	public void insererProformatmereAndAllProformat(ProformatService proformatservice,ProformatmereService proformatmereService,Proformat[] proformats)throws Exception{
+	public void insererProformatmereAndAllProformat(ProformatMiService proformatservice,ProformatmereMiService proformatmereService,ProformatMi[] proformats)throws Exception{
 			if(proformats==null){ throw new Exception("proformat vide"); }
 			if(proformats.length==0){ throw new Exception("proformat vide"); }
 			if(this.dateproformat.after(Date.valueOf(LocalDate.now()))==true){ throw new Exception("Date proformat doit etre <= a aujourd\'hui ("+LocalDate.now().toString()+")"); }
 			if(this.Id_fournisseur<=0){ throw new Exception("fournisseur(id:"+this.Id_fournisseur+") invalide"); }
 			//--Tsy afaka mi-inserer in-2 anaty date iray ho an'ny fournisseur iray
-			List<Proformatmere> lstpm=proformatmereService.findProformatmereByDateproformat(dateproformat);
+			List<ProformatmereMi> lstpm=proformatmereService.findProformatmereByDateproformat(dateproformat);
 			for(int i=0;i<lstpm.size();i++){
 				if(lstpm.get(i).getId_fournisseur()==this.Id_fournisseur){
 					throw new Exception("proformat existe deja a la date:"+this.dateproformat.toString()+" pour idfournisseur:"+this.Id_fournisseur); 
@@ -86,7 +88,7 @@ public class Proformatmere  {
 			for(int i=0;i<proformats.length;i++){
 				proformats[i].verificationfieldsdebase();
 			}
-			Proformatmere proformatmere=proformatmereService.saveProformatmere(this);
+			ProformatmereMi proformatmere=proformatmereService.saveProformatmere(this);
 			for(int i=0;i<proformats.length;i++){
 				proformats[i].setId_proformatmere(proformatmere.getId_proformatmere());
 				proformats[i].insertion(proformatservice);

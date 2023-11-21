@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.example.commerciale.Models.Article" %>
-<%@ page import="com.example.commerciale.Models.Fournisseur" %>
+<%@ page import="com.example.commerciale.Models.ArticleMi" %>
+<%@ page import="com.example.commerciale.Models.FournisseurMi" %>
 
 
 <!DOCTYPE html>

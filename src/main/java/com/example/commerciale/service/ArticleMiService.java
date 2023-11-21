@@ -3,37 +3,37 @@ package com.example.commerciale.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.commerciale.Models.Article;
-import com.example.commerciale.repository.ArticleRepository;
+import com.example.commerciale.Models.ArticleMi;
+import com.example.commerciale.repository.ArticleMiRepository;
 
 import java.util.List;
 import java.util.Optional;
 @Service
-public class ArticleService {
+public class ArticleMiService {
 
     @Autowired
-    private ArticleRepository articleRepository;
+    private ArticleMiRepository articleRepository;
 
     // Méthode pour enregistrer un Article
-    public Article saveArticle(Article Article) {
+    public ArticleMi saveArticle(ArticleMi Article) {
         return articleRepository.save(Article);
     }
 
     // Méthode pour récupérer tous les Articles
-    public List<Article> getAllArticles() {
+    public List<ArticleMi> getAllArticles() {
         return articleRepository.findAll();
     }
-    public Article[] getTabAllArticles(){
-        List<Article> lstA=getAllArticles();
+    public ArticleMi[] getTabAllArticles(){
+        List<ArticleMi> lstA=getAllArticles();
         if(lstA==null){ return null; }
-        Article[] articles=new Article[lstA.size()];
+        ArticleMi[] articles=new ArticleMi[lstA.size()];
         for(int i=0;i<lstA.size();i++){
             articles[i]=lstA.get(i);
         }
         return articles;
     }
     // Méthode pour récupérer un Article par son ID
-    public Optional<Article> getArticleById(int id) {
+    public Optional<ArticleMi> getArticleById(int id) {
         return articleRepository.findById(id);
     }
 

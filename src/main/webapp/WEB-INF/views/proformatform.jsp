@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.example.commerciale.Models.Article" %>
-<%@ page import="com.example.commerciale.Models.Fournisseur" %>
+<%@ page import="com.example.commerciale.Models.ArticleMi" %>
+<%@ page import="com.example.commerciale.Models.FournisseurMi" %>
 
 <%
-    Article[] articles=(Article[])request.getAttribute("articles");
-    Fournisseur[] fournisseurs=(Fournisseur[])request.getAttribute("fournisseurs");
+    ArticleMi[] articles=(ArticleMi[])request.getAttribute("articles");
+    FournisseurMi[] fournisseurs=(FournisseurMi[])request.getAttribute("fournisseurs");
 %>
     <form id="myForm">
         <h1>Insertion de Pro-format</h1>
@@ -20,7 +20,7 @@
             <label for="Id_fournisseur">Fournisseur :</label>
             <select name="Id_fournisseur" id="Id_fournisseur"><%
                 if(fournisseurs!=null){
-                        for(Fournisseur fournisseur : fournisseurs){  %> 
+                        for(FournisseurMi fournisseur : fournisseurs){  %> 
                             <option <%="value=\""+fournisseur.getId_fournisseur()+"\"" %> > <%=fournisseur.getNom() %> </option><%
                         } 
                 }%>
@@ -32,7 +32,7 @@
                 <label for="Id_article1">Article:</label>
                 <select name="Id_article1" id="Id_article1"><%
                     if(articles!=null){
-                            for(Article article : articles){  %> 
+                            for(ArticleMi article : articles){  %> 
                                 <option <%="value=\""+article.getId_article()+"\"" %> > <%=article.getNom() %> </option><%
                             } 
                     }%>

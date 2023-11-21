@@ -3,34 +3,34 @@ package com.example.commerciale.Models;
 import java.sql.Date;
 import java.util.List;
 
-import com.example.commerciale.service.FournisseurService;
-import com.example.commerciale.service.ProformatmereService;
+import com.example.commerciale.service.FournisseurMiService;
+import com.example.commerciale.service.ProformatmereMiService;
 
 public class ProformatmereDetail  {
-	Proformatmere proformatmere;
-	Fournisseur fournisseur;
+	ProformatmereMi proformatmere;
+	FournisseurMi fournisseur;
 	
 	public ProformatmereDetail() {
 	}
 
-	public ProformatmereDetail(Proformatmere proformatmere, Fournisseur fournisseur) {
+	public ProformatmereDetail(ProformatmereMi proformatmere, FournisseurMi fournisseur) {
 		this.proformatmere = proformatmere;
 		this.fournisseur = fournisseur;
 	}
 
-	public Proformatmere getProformatmere() {
+	public ProformatmereMi getProformatmere() {
 		return proformatmere;
 	}
 
-	public void setProformatmere(Proformatmere proformatmere) {
+	public void setProformatmere(ProformatmereMi proformatmere) {
 		this.proformatmere = proformatmere;
 	}
 
-	public Fournisseur getFournisseur() {
+	public FournisseurMi getFournisseur() {
 		return fournisseur;
 	}
 
-	public void setFournisseur(Fournisseur fournisseur) {
+	public void setFournisseur(FournisseurMi fournisseur) {
 		this.fournisseur = fournisseur;
 	}
 	//------
@@ -52,8 +52,8 @@ public class ProformatmereDetail  {
 		return proformatmere.getDateproformat().toString();
 	}
 
-	public ProformatmereDetail[] getAllProformatDetail(ProformatmereService proformatmereService,FournisseurService fournisseurService){
-		List<Proformatmere> lstpm=proformatmereService.getAllProformatmeres();
+	public ProformatmereDetail[] getAllProformatDetail(ProformatmereMiService proformatmereService,FournisseurMiService fournisseurService){
+		List<ProformatmereMi> lstpm=proformatmereService.getAllProformatmeres();
 		System.out.println(lstpm.isEmpty());
 		if(lstpm.isEmpty()==true){ return null; }
 		ProformatmereDetail[] proformatmereDetails=new ProformatmereDetail[lstpm.size()];

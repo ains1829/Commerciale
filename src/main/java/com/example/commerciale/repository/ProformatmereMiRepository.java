@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.commerciale.Models.Proformatmere;
+import com.example.commerciale.Models.ProformatmereMi;
 
-public interface ProformatmereRepository extends JpaRepository<Proformatmere, Integer> {
+public interface ProformatmereMiRepository extends JpaRepository<ProformatmereMi, Integer> {
     // Vous pouvez ajouter des méthodes personnalisées ici si nécessaire
-    List<Proformatmere> findByDateproformat( Date dateproformat);
+    List<ProformatmereMi> findByDateproformat( Date dateproformat);
     
 
 }

@@ -3,16 +3,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Article  {
+@Table(name="article")
+public class ArticleMi  {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    int Id_article ;
    String nom ;
    String unite;
    int Id_categorie;
-	public Article() {
+	public ArticleMi() {
 	}
 	public int getId_article() {
 		return Id_article;

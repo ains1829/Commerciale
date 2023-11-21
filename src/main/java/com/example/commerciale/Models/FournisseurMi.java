@@ -3,9 +3,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Fournisseur  {
+@Table(name="fournisseur")
+public class FournisseurMi  {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    int Id_fournisseur;
@@ -13,7 +15,7 @@ public class Fournisseur  {
    String manager;
    String email;
    String adresse;
-	public Fournisseur() {
+	public FournisseurMi() {
 	}
 	public int getId_fournisseur() {
 		return Id_fournisseur;

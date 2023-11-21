@@ -4,14 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.commerciale.service.ProformatService;
+import com.example.commerciale.service.ProformatMiService;
 
 @Entity
-public class Proformat  {
+@Table(name="proformat")
+public class ProformatMi  {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    int Id_proformat;
@@ -20,10 +22,10 @@ public class Proformat  {
    double prixunitaire;
    double tva ;
    int Id_article; 
-	public Proformat() {
+	public ProformatMi() {
 	}
 
-	public Proformat(String id_proformat, String id_proformatmere,String quantite,String prixunitaire,String tva,String id_article)throws Exception{
+	public ProformatMi(String id_proformat, String id_proformatmere,String quantite,String prixunitaire,String tva,String id_article)throws Exception{
 		setId_proformat(id_proformatmere);
 		setId_proformatmere(id_proformatmere);
 		setQuantite(quantite);
@@ -104,12 +106,12 @@ public class Proformat  {
 	}
 	public void verificationfieldsdebase()throws Exception{
 			if(this.quantite<=0){ throw new Exception("quantite doit etre > 0"); }
-			if(prixunitaire<=0){ throw new Exception("quantite doit etre > 0"); }
+			if(prixunitaire<=0){ throw new Exception("prix unitaire doit etre > 0"); }
 			if(this.tva< 0 || this.tva > 100){ throw new Exception("quantite doit etre entre > ou = 0 et < ou = 100"); }
 			if(this.Id_article<=0){ throw new Exception("article(id:"+this.Id_article+") invalide"); }
 	}
 	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-	public void insertion(ProformatService proformatservice)throws Exception{
+	public void insertion(ProformatMiService proformatservice)throws Exception{
 		if(this.Id_proformatmere<=0){ throw new Exception("proformatmere(id:"+this.Id_proformatmere+") invalide"); }
 			verificationfieldsdebase();
 			proformatservice.saveProformat(this);

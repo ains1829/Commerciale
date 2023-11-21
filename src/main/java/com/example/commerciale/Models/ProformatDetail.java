@@ -2,31 +2,31 @@ package com.example.commerciale.Models;
 
 import java.util.List;
 
-import com.example.commerciale.service.ArticleService;
-import com.example.commerciale.service.ProformatService;
+import com.example.commerciale.service.ArticleMiService;
+import com.example.commerciale.service.ProformatMiService;
 
 public class ProformatDetail  {
-   Proformat proformat;
-   Article article;
+   ProformatMi proformat;
+   ArticleMi article;
 
    
 	public ProformatDetail() {
 	}
-	public ProformatDetail(Proformat proformat, Article article) {
+	public ProformatDetail(ProformatMi proformat, ArticleMi article) {
 		this.proformat = proformat;
 		this.article = article;
 	}
 
-	public Proformat getProformat() {
+	public ProformatMi getProformat() {
 		return proformat;
 	}
-	public void setProformat(Proformat proformat) {
+	public void setProformat(ProformatMi proformat) {
 		this.proformat = proformat;
 	}
-	public Article getArticle() {
+	public ArticleMi getArticle() {
 		return article;
 	}
-	public void setArticle(Article article) {
+	public void setArticle(ArticleMi article) {
 		this.article = article;
 	}
 	//-----
@@ -52,8 +52,8 @@ public class ProformatDetail  {
 	}
 
 
-	public ProformatDetail[] getProformatDetailsById_proformatmere(ProformatService proformatService,ArticleService articleService,int id_proformatmere){
-		List<Proformat> lstp=proformatService.getAllProformatsById_proformatmere(id_proformatmere);
+	public ProformatDetail[] getProformatDetailsById_proformatmere(ProformatMiService proformatService,ArticleMiService articleService,int id_proformatmere){
+		List<ProformatMi> lstp=proformatService.getAllProformatsById_proformatmere(id_proformatmere);
 		if(lstp.isEmpty()){ return null; }
 		ProformatDetail[] proformatDetail=new ProformatDetail[lstp.size()];
 		for(int i=0;i<lstp.size();i++){

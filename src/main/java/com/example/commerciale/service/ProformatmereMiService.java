@@ -5,34 +5,34 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.commerciale.Models.Proformatmere;
-import com.example.commerciale.repository.ProformatmereRepository;
+import com.example.commerciale.Models.ProformatmereMi;
+import com.example.commerciale.repository.ProformatmereMiRepository;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProformatmereService {
+public class ProformatmereMiService {
 
     @Autowired
-    private ProformatmereRepository proformatmereRepository;
+    private ProformatmereMiRepository proformatmereRepository;
 
     // Méthode pour enregistrer un Proformat
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public Proformatmere saveProformatmere(Proformatmere proformatmere) {
+    public ProformatmereMi saveProformatmere(ProformatmereMi proformatmere) {
         return proformatmereRepository.save(proformatmere);
     }
 
     // Méthode pour récupérer tous les Proformatmeres
-    public List<Proformatmere> getAllProformatmeres() {
+    public List<ProformatmereMi> getAllProformatmeres() {
         return proformatmereRepository.findAll();
     }
-    public List<Proformatmere> findProformatmereByDateproformat( Date dateproformat) {
+    public List<ProformatmereMi> findProformatmereByDateproformat( Date dateproformat) {
         return proformatmereRepository.findByDateproformat(dateproformat);
     }
     // Méthode pour récupérer un Proformatmere par son ID
-    public Optional<Proformatmere> getProformatmereById(int id) {
+    public Optional<ProformatmereMi> getProformatmereById(int id) {
         return proformatmereRepository.findById(id);
     }
 
