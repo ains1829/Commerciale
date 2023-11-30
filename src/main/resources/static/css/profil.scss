@@ -1,0 +1,76 @@
+@font-face {
+    font-family: "poppins";
+    src: url('../font/Poppins-Light.ttf');
+}
+:root{
+    --blue : rgb(1 64 81) ;
+    --turquoise : #0199be; 
+    --darkturquoise : #0199be ;
+    --body : rgb(213 247 255 / 10%) ;
+    --white : rgb(255 255 255) ;
+    --input : rgba(238, 238, 238, 0.428) ;
+}
+body{
+    font-family: "poppins";
+    margin: 0;
+    padding: 0;
+    background: var(--body);
+}
+.container-page{
+    display: flex;
+}
+.content-profil{
+    margin-left: 18%;
+    .public{
+        margin-top: 20px;
+        width: 600px;
+        background: var(--white);
+        box-shadow: 0px 0px 6px 1px rgb(214 214 214 / 40%);
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        .img{
+            img{
+                width: 150px;
+                height: 150px;
+            }
+        }
+        .detail{
+            display: flex;
+            flex-direction: column;
+            font-size: 20px;
+            color: var(--turquoise);
+        }
+    }
+    .travaille{
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+        background: var(--white);
+        box-shadow: 0px 0px 6px 1px rgb(214 214 214 / 40%);
+        padding: 25px;
+        display: flex;
+        border-radius: 15px;
+        span{
+            font-size: 20px;
+            color: var(--turquoise);
+        }
+        .travaille-title{
+            font-size: 13px !important;
+            font-weight: bold;
+            color: gray !important;
+            padding-bottom: 10px;
+        }
+    }
+    .bienvenu{
+        padding: 25px;
+        width: 850px;
+        span{
+            font-size: 60px;
+            color: var(--turquoise);
+            font-weight: bold ;
+        }
+    }
+}

@@ -12,7 +12,7 @@ public class Membre {
     String  nom   ;
     String  email   ;
     Date dtn  ;
-    String   mdp   ;
+    String  mdp   ;
     String  profil  ;
     String departement ;
     public Membre() {

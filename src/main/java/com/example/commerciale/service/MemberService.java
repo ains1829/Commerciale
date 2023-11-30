@@ -20,4 +20,7 @@ public class MemberService {
         }
         return null ;
     }
+    public int getDepartement(int id_membre){
+        return membrerepository.getIddepartement(id_membre) ;
+    }
 }

@@ -8,4 +8,6 @@ import com.example.commerciale.models.Besoinmain;
 public interface BesoinRepository extends JpaRepository<Besoinmain , Integer> {
     @Query(value = "select * from simple_groupement where datebesoin = :date_besoin" , nativeQuery = true) 
     List<Besoinmain> getBesoinMainDate(@Param("date_besoin") Date datess) ;
+    @Query(value = "select datebesoin from simple_groupement group by datebesoin " , nativeQuery = true) 
+    List<Date> getDateGroupement() ;
 }

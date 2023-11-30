@@ -1,0 +1,107 @@
+@font-face {
+    font-family: "poppins";
+    src: url('../font/Poppins-Light.ttf');
+}
+:root{
+    --blue : rgb(1 64 81) ;
+    --turquoise : #0199be; 
+    --darkturquoise : #0199be ;
+    --body : rgb(213 247 255 / 10%) ;
+    --white : rgb(255 255 255) ;
+    --input : rgba(238, 238, 238, 0.428) ;
+}
+body{
+    font-family: "poppins";
+    margin: 0;
+    padding: 0;
+    background: var(--body);
+}
+.container-page{
+    display: flex;
+}
+.content-insertion{
+    margin-left: 18%;
+    background: var(--white);
+    padding: 15px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 6px 1px rgb(214 214 214 / 40%);
+    border-radius: 5px;
+    .besoin{
+        color: var(--turquoise);
+        font-size: 14px;
+        font-weight: bold;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        label{
+            font-weight: bold;
+            font-size: 13px;
+            color: gray;
+            padding-bottom: 5px;
+        }
+        select{
+            font-family: "poppins";
+            padding: 12px;
+            border: none;
+            background: var(--input);
+            outline: none;
+            border-radius: 5px;
+        }
+        select:focus{
+            outline: 2px solid var(--turquoise);
+        }
+        input[type="text"]{
+            padding: 10px;
+            background: var(--input);
+            font-family: "poppins";
+            border: none;
+            outline: none;
+            width: 87%;
+            border-radius: 5px;
+        }
+        input[type="date"]{
+            padding: 9px;
+            background: var(--input);
+            font-family: "poppins";
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+        input[type="text"]:focus{
+            outline: 2px solid var(--turquoise);
+        } 
+        input[type="date"]:focus{
+            outline: 2px solid var(--turquoise);
+        } 
+        div{
+            display: flex;
+            flex-direction: column;
+            margin-top: 8px;
+        }
+        .details{
+            display: flex;
+            flex-direction: row !important;
+            div{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .button{
+            margin-top: 15px;
+            margin-left: auto;
+            width: 40%;
+            input[type="submit"]{
+                padding: 9px;
+                background: var(--turquoise);
+                font-family: "poppins";
+                border: none;
+                outline: none;
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+            }
+        }
+    }
+}

@@ -19,4 +19,7 @@ public class BesoinService {
     public List<Besoinmain> getBesoinAllBydate(Date datess){
         return besoinRepository.getBesoinMainDate(datess) ;
     }
+    public List<Date> getDateG(){
+        return besoinRepository.getDateGroupement() ;
+    }
 }

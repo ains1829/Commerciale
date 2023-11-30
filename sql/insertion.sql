@@ -9,6 +9,9 @@ insert into membre (nom , email , dtn , mdp , Id_Departement, profil) values
     ('Andy' , 'Andrew@gmail.com' , '2002-08-10' , 'manga' , 4 , 2) ,
     ('Ains' , 'Ains@gmail.com' , '2002-08-10' ,'blill' ,1 , 1) ;
 
+insert into membre (nom , email , dtn , mdp , id_departement , profil) values
+    ('Anko' , 'Anko@gmail.com' , '2022-08-10' , 'baina' , 3 , 2) ;
+
 insert into fournisseur(nom , manager , email , adresse) values
     ('JUMBO SCORE' , 'Mamiarivony' , 'Mamiarivony@gmail.com' , 'Ambatobe') ,
     ('SUPER U' , 'Balita' , 'Balita@gmail.com' , 'Analakely') ,

@@ -36,6 +36,6 @@ public class LoginContoller {
         session.setAttribute("aboutmember", membre);
         model.addAttribute("bande", detailBande) ;
         model.addAttribute("fournisseur", fournisseur) ;
-        return "Bandecommande" ;
+        return "Profil" ;
     }
 }

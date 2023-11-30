@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.commerciale.models.Groupementnotif;
 import com.example.commerciale.repository.NotificationGroupement;
+import java.sql.Date;
 @Service
 public class GroupementnotifService {
     @Autowired
@@ -30,6 +31,18 @@ public class GroupementnotifService {
             return groupement.save(notif);
         }
         return null;
+    }
+    public boolean DateisExist(Date dates){
+        List<Groupementnotif> noList = getAllNotification() ;
+        for (int i = 0; i < noList.size(); i++) {
+            if(noList.get(i).getDatebesoin().equals(dates)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Groupementnotif saving(Groupementnotif notifis){
+        return groupement.save(notifis) ;
     }
     public List<Groupementnotif> getNotif(String profil , String departement){
         List <Groupementnotif> all = getAllNotification() ;

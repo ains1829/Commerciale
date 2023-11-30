@@ -17,6 +17,10 @@ public class Groupementnotif {
     int idgroupement ;
     Date datebesoin ;
     int etat ;
+    public Groupementnotif(Date datebesoin, int etat) {
+        this.datebesoin = datebesoin;
+        this.etat = etat;
+    }
     public int getIdgroupement() {
         return idgroupement;
     }
