@@ -58,7 +58,6 @@ insert into besoin (datebesoin , quantite , Id_Departement , Id_article) values
     (current_date , 35 ,  1 , 1) ,
     (current_date , 40 ,  2 , 1) ,
     (current_date , 50 , 3 , 4) ;
-
 insert into proformatmere (dateproformat , nomproformat , Id_fournisseur) values
     (current_date , 'Proformat Jumbo score' , 1 ) ,
     (current_date ,'Proformat Super U' , 2) ,
