@@ -95,3 +95,49 @@ CREATE TABLE besoin(
    FOREIGN KEY(Id_Departement) REFERENCES Departement(Id_Departement),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
+
+CREATE TABLE Livraison (
+   idlivraison SERIAL PRIMARY KEY ,
+   name_livreur VARCHAR(55) not NULL ,
+   id_article int references article (id_article) ,
+   quantite float ,
+   datelivraison date
+);
+------RECEPTION DU LIVRAISON DE L'ARTICLE QUI A ETE COMMANDE ( PAR COMMANDE )
+CREATE TABLE bonreception(
+   idbonreception SERIAL PRIMARY KEY,
+   datereception date,
+   Id_bande_commande int references BandeCommandeDetail(Id_bande_commande),
+   quantiterecu float
+);
+------FACTURE DU BON DE RECEPTION
+CREATE TABLE facturemere(
+   idfacturemere SERIAL PRIMARY KEY,   
+   datefacture date,
+   etatmere int
+);
+CREATE TABLE facturefils(
+   idfacturefils SERIAL PRIMARY KEY,
+   idbonreception int references bonreception(idbonreception),
+   etatfils int
+);
+------BON ENTREE VENANT DU BON DE RECEPTION
+CREATE TABLE magasin(
+   idmagasin SERIAL PRIMARY KEY,
+   nommagasin VARCHAR(30),
+   adresse VARCHAR(50)
+);
+CREATE TABLE bonentre(
+   idbonentre SERIAL PRIMARY KEY,
+   idmagasin int references magasin(idmagasin),
+   idbonreception int references bonreception(idbonreception),
+   quantiteentre float,
+   dateentre date
+); 
+------BON DE SORTIE ( SORTIE DANS UNE ENTREE )
+CREATE TABLE bonsortie(
+   idbonsortie SERIAL PRIMARY KEY,
+   identrestock int references entrestock(identrestock),
+   quantitesortie float,
+   datesortie date
+); 
