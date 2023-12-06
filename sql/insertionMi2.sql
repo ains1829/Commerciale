@@ -1,5 +1,6 @@
 insert into Departement(nom) values
     ('RH') , ('SECURITY') ,('SERVICE') , ('FINANCE') ;
+insert into Departement(nom) values ('MAGASIN');
 insert into profil (name_profil) values
     ('DG') , ('Employer');
 
@@ -11,7 +12,11 @@ insert into membre (nom , email , dtn , mdp , Id_Departement, profil) values
 
 insert into membre (nom , email , dtn , mdp , id_departement , profil) values
     ('Anko' , 'Anko@gmail.com' , '2022-08-10' , 'baina' , 3 , 2) ;
-
+insert into membre (nom , email , dtn , mdp , id_departement , profil) values
+    ('Robert' , 'magasinier1@gmail.com' , '2000-08-12' , '1234' , 5 , 2) ,
+    ('Carlos' , 'magasinier2@gmail.com' , '2001-09-10' , '1234' , 5 , 2) ,
+    ('Jeanba' , 'magasinier3@gmail.com' , '2000-11-09' , '1234' , 5 , 2) ;
+    
 insert into fournisseur(nom , manager , email , adresse) values
     ('JUMBO SCORE' , 'Mamiarivony' , 'Mamiarivony@gmail.com' , 'Ambatobe') ,
     ('SUPER U' , 'Balita' , 'Balita@gmail.com' , 'Analakely') ,

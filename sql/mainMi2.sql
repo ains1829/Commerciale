@@ -95,6 +95,7 @@ CREATE TABLE besoin(
    FOREIGN KEY(Id_Departement) REFERENCES Departement(Id_Departement),
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
+alter table besoin add column havebesoin boolean default false;
 
 CREATE TABLE BandeCommandeDetail(
     Id_bande_commande SERIAL PRIMARY KEY,
@@ -139,6 +140,7 @@ CREATE TABLE magasin(
    nommagasin VARCHAR(30),
    adresse VARCHAR(50)
 );
+
 CREATE TABLE bonentre(
    idbonentre SERIAL PRIMARY KEY,
    idmagasin int references magasin(idmagasin),
@@ -149,7 +151,7 @@ CREATE TABLE bonentre(
 ------BON DE SORTIE ( SORTIE DANS UNE ENTREE )
 CREATE TABLE bonsortie(
    idbonsortie SERIAL PRIMARY KEY,
-   identrestock int references entrestock(identrestock),
+   idbonentre int references bonentre(idbonentre),
    quantitesortie float,
    datesortie date
 ); 
