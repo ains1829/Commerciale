@@ -16,7 +16,7 @@ insert into membre (nom , email , dtn , mdp , id_departement , profil) values
     ('Robert' , 'magasinier1@gmail.com' , '2000-08-12' , '1234' , 5 , 2) ,
     ('Carlos' , 'magasinier2@gmail.com' , '2001-09-10' , '1234' , 5 , 2) ,
     ('Jeanba' , 'magasinier3@gmail.com' , '2000-11-09' , '1234' , 5 , 2) ;
-    
+
 insert into fournisseur(nom , manager , email , adresse) values
     ('JUMBO SCORE' , 'Mamiarivony' , 'Mamiarivony@gmail.com' , 'Ambatobe') ,
     ('SUPER U' , 'Balita' , 'Balita@gmail.com' , 'Analakely') ,
@@ -58,7 +58,6 @@ insert into articleprix (prixht , dateprix , tva , Id_fournisseur , Id_article) 
     ('2000',current_date , 15 , 3 , 4 ),
     ('800',current_date , 15 , 3 , 5 ),
     ('1500',current_date , 15 , 3 , 6 );
-
 insert into besoin (datebesoin , quantite , Id_Departement , Id_article) values 
     (current_date , 35 ,  1 , 1) ,
     (current_date , 40 ,  2 , 1) ,
@@ -108,3 +107,8 @@ insert into proformatmere (dateproformat , nomproformat , Id_fournisseur) values
     ('2023-11-17' , 'Proformat Jumbo score' , 1 ) , ('2023-11-17' ,'Proformat Super U' , 2) ;
 insert into proformat (Id_proformatmere , quantite , prixunitaire , tva , Id_article) values 
     (4 , 20 , '500000',15,1),(5 , 10 , '600000' , 15 ,1);
+    
+insert into magasin (nommagasin,adresse) values
+   ('MAG1','lot01 adress1'),
+   ('MAG2','lot02 adress2'),
+   ('MAG3','lot03 adress3');
