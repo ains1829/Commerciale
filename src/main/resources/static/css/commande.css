@@ -70,4 +70,20 @@ body {
 .content-commande .commande table th, .content-commande .commande table td {
   padding: 10px;
   font-size: 14px;
+}
+.content-commande .commande .livraison {
+  display: flex;
+  width: 250px;
+  margin-left: auto;
+}
+.content-commande .commande .livraison a {
+  margin-left: 10px;
+  font-size: 12px;
+  color: var(--turquoise);
+  font-weight: bold;
+  text-decoration: none;
+}
+.content-commande .commande .livraison .encours {
+  cursor: cell;
+  color: gray !important;
 }/*# sourceMappingURL=commande.css.map */

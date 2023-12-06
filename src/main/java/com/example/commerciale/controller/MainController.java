@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.sql.Date;
 import com.example.commerciale.models.Groupementnotif;
 import com.example.commerciale.models.Membre;
+import com.example.commerciale.models.Stock;
 import com.example.commerciale.models.Article;
 import com.example.commerciale.models.Besoin;
 import com.example.commerciale.models.Besoinmain;
+import com.example.commerciale.models.Fournisseur;
 import com.example.commerciale.service.ArticleService;
 import com.example.commerciale.service.BandeDetail;
 import com.example.commerciale.service.BesoinService;
@@ -25,6 +27,8 @@ import com.example.commerciale.service.EmailService;
 import com.example.commerciale.service.GroupementnotifService;
 import com.example.commerciale.service.MemberService;
 import com.example.commerciale.service.ServiceFournisseur;
+import com.example.commerciale.service.ServiceLivraison;
+import com.example.commerciale.service.StockService;
 import com.ibm.icu.text.Normalizer.Mode;
 @Controller
 @RequestMapping("/main")
@@ -45,10 +49,18 @@ public class MainController {
     private BesoinService besoin_view ;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private StockService servicestock ;
+    @Autowired 
+    private ServiceLivraison servicelivraison ;
     @GetMapping("/maPage")
     public String afficherMaPage(Model model) {
         model.addAttribute("message", "Bienvenue sur ma page!");
         return "Page";
+    }
+    @GetMapping("/loginfournisseur")
+    public String afficherF() {
+        return "PageFournisseur";
     }
     @GetMapping("/notification")
     public String NotifPage(HttpSession session , Model model){
@@ -143,5 +155,34 @@ public class MainController {
         model.addAttribute("serviceBesoin", truebesoin) ;
         model.addAttribute("article", article) ;
         return "Detailsgroupement" ;
+    }
+    @GetMapping("/bandecommandeF")
+    public String ShowBandecommande(HttpSession session , Model model){
+        Fournisseur fournisseur_about = (Fournisseur) session.getAttribute("aboutfournisseur") ;
+        session.setAttribute("aboutfournisseur", fournisseur_about);
+        model.addAttribute("livraison", servicelivraison) ;
+        model.addAttribute("bande", detailBande) ;
+        model.addAttribute("fournisseur", fournisseur) ;
+        return "AfficheF" ;
+    }
+    @GetMapping("/livraison")
+    public String getLivraison(@RequestParam("date") Date dates , Model model){
+        model.addAttribute("datebandecommande" , dates) ;
+        model.addAttribute("articles", article.getArticleAll()) ;
+        return "FormulaireLivraison" ;
+    }
+    @GetMapping("/getstock")
+    public String getMyStock(HttpSession session , Model model){
+        Fournisseur fournisseurs = (Fournisseur) session.getAttribute("aboutfournisseur");
+        model.addAttribute("article", article) ;
+        model.addAttribute("stock", servicestock.getStockFournisseur(fournisseurs.getId_fournisseur())) ;
+        return "MyStock" ;
+    }
+    @GetMapping("/bandelivraisons")
+    public String getBandeLivraison(@RequestParam("date") Date dates , Model model){
+        model.addAttribute("datebc", dates) ; 
+        model.addAttribute("article", article) ;
+        model.addAttribute("livraison", servicelivraison) ;
+        return "Bl";
     }
 }

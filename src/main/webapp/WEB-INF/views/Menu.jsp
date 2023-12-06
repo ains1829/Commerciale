@@ -25,7 +25,11 @@
                 <%}
             %>
             <span><a href="/main/notification">Notification</a></span>
-            <span><a href="/mi/">Proformat</a></span>
+            <%
+                if(membrelogin.getDepartement().compareTo("SERVICE") == 0) { %>
+                    <span><a href="/mi/">Proformat</a></span>
+                    <%}
+            %>
             <span><a href="/main/commande">Bandecommande</a></span>
             <span><a href="/main/profil">Profil</a></span>
             <span><a href="/main/maPage">Se Deconnecter</a></span>

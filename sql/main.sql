@@ -27,7 +27,7 @@ CREATE TABLE fournisseur(
    adresse VARCHAR(50) ,
    PRIMARY KEY(Id_fournisseur)
 );
-
+alter table fournisseur add column password VARCHAR(55) default 'password' ;
 CREATE TABLE categorie(
    Id_categorie SERIAL,
    nomcategorie VARCHAR(50) ,
@@ -112,3 +112,10 @@ CREATE TABLE BandeCommandeDetail(
     dateproformat date ,
     dateBandecommade date 
 ) ;
+CREATE TABLE Livraison (
+   idlivraison SERIAL PRIMARY KEY ,
+   name_livreur VARCHAR(55) not NULL ,
+   id_article int references article (id_article) ,
+   quantite float ,
+   datelivraison date
+);

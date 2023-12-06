@@ -1,0 +1,101 @@
+@font-face {
+    font-family: "poppins";
+    src: url('../font/Poppins-Light.ttf');
+}
+:root{
+    --blue : rgb(1 64 81) ;
+    --turquoise : #0199be; 
+    --darkturquoise : #0199be ;
+    --body : rgb(213 247 255 / 10%) ;
+    --white : rgb(255 255 255) ;
+    --input : rgba(238, 238, 238, 0.428) ;
+    --error:rgb(233, 27, 27);
+}
+body{
+    font-family: "poppins";
+    margin: 0;
+    padding: 0;
+    background: var(--body);
+}
+.container-page{
+    display: flex;
+}
+.content-form-livraison{
+    margin-left: 18%;
+    width: 25%;
+    background: var(--white);
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    form{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        div{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            label{
+                font-size: 13px;
+                font-weight: bold;
+            }
+        }
+        input{
+            font-family: "poppins";
+            padding: 8px;
+            border: none;
+            background: var(--input);
+            outline: none;
+        }
+        input:focus{
+            outline: 1px solid var(--turquoise);
+        }
+        select{
+            background: var(--input);
+            font-family: "poppins";
+            padding: 8px;
+            width: 90%;
+            border: none;
+            outline: none;
+        }
+        select:focus{
+            outline: 1px solid var(--turquoise);
+        }
+        .article{
+            display: flex; 
+            flex-direction: row !important;
+            align-items: center;
+            input{
+                width: 90%;
+            }
+        }
+        input[type="submit"]{
+            font-family: "poppins";
+            width: 30%;
+            padding: 10px;
+            display: flex;
+            margin-left: auto;
+            color: var(--white);
+            background: var(--turquoise);
+            text-align: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        .add-remove{
+            display: flex;
+            font-size: 13px;
+            width: 100px;
+            span{
+                border-radius: 30px;
+                text-align: center;
+                padding: 5px;
+                background: var(--turquoise);
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+    }
+}

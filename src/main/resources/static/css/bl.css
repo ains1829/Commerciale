@@ -1,0 +1,68 @@
+@font-face {
+  font-family: "poppins";
+  src: url("../font/Poppins-Light.ttf");
+}
+:root {
+  --blue: rgb(1 64 81) ;
+  --turquoise: #0199be;
+  --darkturquoise: #0199be ;
+  --body: rgb(213 247 255 / 10%) ;
+  --white: rgb(255 255 255) ;
+  --input: rgba(238, 238, 238, 0.428) ;
+}
+
+body {
+  font-family: "poppins";
+  margin: 0;
+  padding: 0;
+  background: var(--body);
+}
+
+.container-page {
+  display: flex;
+}
+
+.content-bl {
+  margin-top: 10px;
+  margin-left: 18%;
+  width: 70%;
+  padding: 10px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px 4px rgba(238, 238, 238, 0.135);
+}
+.content-bl div {
+  margin-bottom: 10px;
+}
+.content-bl div span {
+  margin-bottom: 10px;
+}
+.content-bl .content-about-livraison {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content-bl .content-about-livraison div {
+  display: flex;
+  flex-direction: column;
+}
+.content-bl .content-about-livraison div .fournisseur {
+  font-size: 18px;
+  font-weight: bold;
+}
+.content-bl table {
+  width: 100%;
+  text-align: center;
+}
+.content-bl table tr {
+  align-items: center;
+}
+.content-bl table tr td {
+  padding: 12px;
+}
+.content-bl table .title-table {
+  background: var(--turquoise);
+}
+.content-bl table .title-table th {
+  padding: 12px;
+}/*# sourceMappingURL=bl.css.map */

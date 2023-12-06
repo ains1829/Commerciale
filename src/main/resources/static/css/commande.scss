@@ -66,5 +66,21 @@ body{
                 font-size: 14px
             }
         }
+        .livraison{
+            display: flex;
+            width: 250px;
+            margin-left: auto;
+            a{
+                margin-left: 10px;
+                font-size: 12px;
+                color: var(--turquoise);
+                font-weight: bold;
+                text-decoration: none;
+            }
+            .encours{
+                cursor:cell;
+                color: gray !important;
+            }
+        }
     }
 }

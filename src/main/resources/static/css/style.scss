@@ -61,10 +61,14 @@ body{
                 }
             }
             span{
-                color: var(--turquoise);
                 font-size: 10px;
                 font-weight: bold;
                 margin-top: 10px;
+                color: var(--turquoise);
+                a{
+                    color: var(--turquoise);
+                    text-decoration: none;
+                }
             }
         }
     }

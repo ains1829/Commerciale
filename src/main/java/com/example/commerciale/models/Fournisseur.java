@@ -12,12 +12,14 @@ public class Fournisseur {
     String manager  ;
     String  email   ;   
     String adresse ;
-    public Fournisseur(int id_fournisseur, String nom, String manager, String email, String adresse) {
+    String password ;
+    public Fournisseur(int id_fournisseur, String nom, String manager, String email, String adresse , String password) {
         this.id_fournisseur = id_fournisseur;
         this.nom = nom;
         this.manager = manager;
         this.email = email;
         this.adresse = adresse;
+        this.password = password;
     }
     public Fournisseur() {
     }
@@ -50,5 +52,11 @@ public class Fournisseur {
     }
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

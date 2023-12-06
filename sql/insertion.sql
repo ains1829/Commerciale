@@ -17,6 +17,7 @@ insert into fournisseur(nom , manager , email , adresse) values
     ('SUPER U' , 'Balita' , 'Balita@gmail.com' , 'Analakely') ,
     ('AINS COMPANY' , 'LeBoss' , 'LeBoss@gmail.com' , 'Ankorondrano') ;
 
+
 insert into categorie (nomcategorie) values 
     ('Bureatique') , ('Scolaire') ;
 
@@ -53,7 +54,6 @@ insert into articleprix (prixht , dateprix , tva , Id_fournisseur , Id_article) 
     ('2000',current_date , 15 , 3 , 4 ),
     ('800',current_date , 15 , 3 , 5 ),
     ('1500',current_date , 15 , 3 , 6 );
-
 insert into besoin (datebesoin , quantite , Id_Departement , Id_article) values 
     (current_date , 35 ,  1 , 1) ,
     (current_date , 40 ,  2 , 1) ,
@@ -86,8 +86,6 @@ CREATE OR REPLACE VIEW Member as
     SELECT membre.id_membre , membre.nom , membre.email , membre.dtn , membre.mdp , profil.name_profil as 
         profil, departement.nom as departement FROM membre JOIN departement ON 
             (membre.id_departement = departement.id_departement) JOIN profil ON (membre.profil  = profil.id_profil);
-
-
 -- create table for notifications
 CREATE TABLE Groupement_date_etat(
     idgroupement serial PRIMARY KEY ,

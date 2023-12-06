@@ -8,9 +8,9 @@
 </head>
 <body>
     <div class="commerciale-login">
-        <div class="bienvenue"> BIENVENUE SUR LA PAGE DE CONNEXION DE COMMERCIALE </div>
+        <div class="bienvenue"> CONNECTER AU TANT QUE FOURNISSEUR DE COMMERCIALE </div>
         <div class="form">
-            <form action="/logincontroller/login" method="post">
+            <form action="/logincontroller/fournisseur_login" method="post">
                 <div>
                     <label> Email </label>
                     <input type="email" name="email">
@@ -22,9 +22,7 @@
                 <div>
                     <input type="submit" value="Se Connecter">
                 </div>
-                <span>
-                    <a href="/main/loginfournisseur">I'm fournisseur</a>
-                </span> 
+                <span>Forget password ?</span>
             </form>
         </div>
     </div>

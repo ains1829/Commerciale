@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "poppins";
+  src: url("../font/Poppins-Light.ttf");
+}
+:root {
+  --blue: rgb(1 64 81) ;
+  --turquoise: #0199be;
+  --darkturquoise: #0199be ;
+  --body: rgb(213 247 255 / 10%) ;
+  --white: rgb(255 255 255) ;
+  --input: rgba(238, 238, 238, 0.428) ;
+  --error:rgb(233, 27, 27);
+}
+
+body {
+  font-family: "poppins";
+  margin: 0;
+  padding: 0;
+  background: var(--body);
+}
+
+.container-page {
+  display: flex;
+}
+
+.content-stock {
+  margin-left: 18%;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: flex-start;
+  border-radius: 15px;
+  margin-top: 5px;
+}
+.content-stock .bloc {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  padding: 10px;
+  margin-left: 5px;
+  color: var(--darkturquoise);
+  border-radius: 15px;
+  box-shadow: 0px 0px 6px 1px rgba(214, 214, 214, 0.4);
+}
+.content-stock .bloc .title-article {
+  font-size: 20px;
+  margin-bottom: 1px;
+}
+.content-stock .bloc .quantite {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.content-stock .bloc .date {
+  font-weight: bold;
+  font-size: 10px;
+}/*# sourceMappingURL=stock.css.map */

@@ -1,0 +1,81 @@
+<%@page import = "java.util.List" %>
+<%@page import = "com.example.commerciale.service.BandeDetail"%>
+<%@page import = "com.example.commerciale.models.Bandecommandedetail"%>
+<%@page import="javax.servlet.*" %>
+<%@page import="java.sql.Date" %>
+<%@page import="com.example.commerciale.service.ServiceFournisseur"%>
+<%@page import="com.example.commerciale.service.ServiceLivraison"%>
+<%@page import="com.example.commerciale.models.Fournisseur"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/commande.css">
+    <title>Fournisseur</title>
+</head>
+<body>
+    <div class="container-page">
+        <%@include file = "MenuF.jsp" %>
+        <%
+            BandeDetail details = (BandeDetail) request.getAttribute("bande") ;
+            ServiceFournisseur servicefounisseur = (ServiceFournisseur) request.getAttribute("fournisseur");
+            ServiceLivraison servicelivraison = (ServiceLivraison) request.getAttribute("livraison");
+        %>
+        <%
+            List<Date> alldates = details.all_date() ;
+        %>
+        <div class="content-commande">
+            <%
+                for(int i = 0; i < alldates.size(); i++){
+                        if(details.fournisseur_thisDate(fournisseur.getId_fournisseur() , alldates.get(i)) == true){
+                            Fournisseur fournisseur_article = servicefounisseur.getFournisseur(fournisseur.getId_fournisseur()) ;
+                        %>
+                            <div class="commande">
+                                <span class="date">Date  : <%=alldates.get(i)%></span>
+                                <span class="fournisseur">Fournisseur : <%=fournisseur_article.getNom()%></span>
+                                <span class="manager">Manager :  <%=fournisseur_article.getManager()%></span>
+                                <span class="manager">Email :  <%=fournisseur_article.getEmail()%></span>
+                                <span class="manager">Addresse :  <%=fournisseur_article.getAdresse()%></span>
+                                <table>
+                                    <tr>
+                                        <th>Article</th>
+                                        <th>Quantite</th>
+                                        <th>Prix HT</th>
+                                        <th>Tva</th>
+                                        <th>TTC</th>
+                                    </tr>
+                                    <%
+                                        List<Bandecommandedetail> mycommande = details.MyCommande(fournisseur.getId_fournisseur() , alldates.get(i)) ;
+                                        for(int u = 0; u < mycommande.size() ; u++){ %>
+                                            <tr>
+                                                <td><%=details.getNameArticle(mycommande.get(u).getId_article())%></td>
+                                                <td><%=mycommande.get(u).getQuantite() %></td>
+                                                <td><%=mycommande.get(u).getPrixht() %> ar</td>
+                                                <td><%=mycommande.get(u).getTva() %> %</td>
+                                                <td><%=details.TTC(mycommande.get(u).getTva() , mycommande.get(u).getPrixht())  %> ar</td>
+                                            </tr>
+                                        <%}
+                                    %>
+                                </table>
+                                <span class="somme"> Somme total : <%=details.SommeMyCommande(fournisseur.getId_fournisseur() , alldates.get(i)) %> ar</span>
+                                <span class="arreter"> Arreter a la somme de : <%=details.generateLetter(details.SommeMyCommande(fournisseur.getId_fournisseur() , alldates.get(i)))%> ariary </span>
+                                <div class="livraison">
+                                    <a href="/main/bandelivraisons?date=<%=alldates.get(i)%>">bande livraison</a>
+                                    <%
+                                        if(servicelivraison.getNumberLivraison(fournisseur.getId_fournisseur(), alldates.get(i)) == 0){ %>
+                                            <a href="/main/livraison?date=<%=alldates.get(i)%>">Effectuer livraion</a>
+                                            <%} else{ %>
+                                                <a class="encours">livraion en cours</a>
+                                            <%}
+                                    %>
+                                </div>
+                            </div>
+                        <%}
+                    
+                } 
+            %>
+        </div>
+    </div>
+</body>
+</html>
