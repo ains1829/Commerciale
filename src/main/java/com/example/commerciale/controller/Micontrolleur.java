@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.commerciale.models.ArticleMi;
+import com.example.commerciale.models.BonentreMi;
+import com.example.commerciale.models.DetailArticleRecu;
+import com.example.commerciale.models.MagasinMi;
 import com.example.commerciale.models.ProformatMi;
 import com.example.commerciale.models.ProformatDetail;
 import com.example.commerciale.models.ProformatmereMi;
@@ -21,6 +24,9 @@ import com.example.commerciale.service.ArticleMiService;
 import com.example.commerciale.service.FournisseurMiService;
 import com.example.commerciale.service.ProformatMiService ;
 import com.example.commerciale.service.ProformatmereMiService;
+import com.example.commerciale.service.MagasinMiService;
+import com.example.commerciale.service.DetailArticleRecuService;
+import com.example.commerciale.service.BonentreMiService;
 
 @Controller // Utiliser @Controller au lieu de @RestController
 @RequestMapping("/mi")
@@ -34,6 +40,12 @@ public class Micontrolleur {
     private ProformatMiService proformatService;
     @Autowired
     private ProformatmereMiService proformatmereService;
+    @Autowired
+    private MagasinMiService magasinService;
+    @Autowired
+    private DetailArticleRecuService detailArticleRecuService;
+    @Autowired
+    private BonentreMiService bonentreMiService;
     @GetMapping("/")
     public String root(HttpServletRequest request,@RequestParam(name = "erreur", defaultValue = "") String erreur) {       
         request.setAttribute("articles",articleService.getTabAllArticles());
@@ -90,6 +102,76 @@ public class Micontrolleur {
         request.setAttribute("content", "proformatdetails.jsp");
         return "template";
     }
+    @GetMapping("/insertbonentreep1")
+    public String insertbonentreep1(@RequestParam(name = "erreur",defaultValue = " ") String erreur,HttpServletRequest request){
+        request.setAttribute("magasinMis", magasinService.getTabAllmagasins());
+        request.setAttribute("erreur",erreur);
+        request.setAttribute("fournisseurs", fournisseurService.getTabAllFournisseurs());
+        return "Entreep1";
+    }
+    @GetMapping("/insertbonentreep2")
+    public String insertbonentreep2(
+        @RequestParam(name = "idmagasin",defaultValue = "0") String idmagasin,
+        @RequestParam(name = "datereception",defaultValue = "") String datereception ,
+        @RequestParam(name = "idfournisseur",defaultValue = "0") String idfournisseur ,
+        HttpServletRequest request
+    ){
+       
+        try{
+            System.out.println("magasin--->"+idmagasin+" datereception-->"+datereception+" idfournisseur-->"+idfournisseur);
+            MagasinMi magasinMi=new MagasinMi();
+            magasinMi.setIdmagasin(idmagasin);
+            magasinMi=magasinMi.getByTheId(magasinService);
+            if(magasinMi==null){ throw new Exception("magasin id:"+idmagasin+" invalide"); }
+            DetailArticleRecu detailArticleRecu=new DetailArticleRecu();
+            detailArticleRecu.setDatereception(datereception);
+            detailArticleRecu.setId_fournisseur(idfournisseur);
+            DetailArticleRecu[] detailArticleRecus=detailArticleRecu.getDetailArticleRecusOfDaterecepionOfId_fournisseur(detailArticleRecuService);
+            if(detailArticleRecus==null){ throw new Exception("aucune article recu le "+datereception); }
+            request.setAttribute("magasinmi", magasinMi);
+            request.setAttribute("detailArticleRecus", detailArticleRecus);
+            return "Entreep2";
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return "redirect:/mi/insertbonentreep1?erreur="+ex.getMessage();
+        }
+    }
 
+    // idbonentre SERIAL PRIMARY KEY,
+    // idmagasin int references magasin(idmagasin),
+    // IdReceptiondetail int references Receptiondetail(IdReceptiondetail),
+    // quantiteentre float,
+    // dateentre date
+    @GetMapping("/insertbonentre")
+    public String insertbonentre(HttpServletRequest request){
+        String idmagasin=request.getParameter("idmagasin")+"";
+        String taille=request.getParameter("taille");
+        String dateentre=request.getParameter("dateentre")+"";
+
+        String datereception=request.getParameter("datereception")+"";
+        String idfournisseur=request.getParameter("idfournisseur")+"";
+        try{
+
+            if(taille==null){
+                taille="0";
+            }
+            int size=Integer.valueOf(taille);
+            String[] idbandereceptioni=new String[size];
+            String[] idarticlei=new String[size];
+            String[] quantiteentrei=new String[size];
+            for(int i=0;i<size;i++){
+                idbandereceptioni[i]=request.getParameter("idbandereception"+(size+1))+"";
+                idarticlei[i]=request.getParameter("idarticle"+(size+1))+"";
+                quantiteentrei[i]=request.getParameter("quantiteentre"+(size+1))+"";
+            }
+            BonentreMi bonentreMi=new BonentreMi();
+            bonentreMi.insertAll(bonentreMiService,idmagasin,dateentre,idbandereceptioni,quantiteentrei);
+            
+            return "redirect:/mi/insertbonentreep2?idmagasin="+idmagasin+"&datereception="+datereception+"&idfournisseur="+idfournisseur;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return "redirect:/mi/insertbonentreep2?idmagasin="+idmagasin+"&datereception="+datereception+"&idfournisseur="+idfournisseur+"&erreur="+ex.getMessage();
+        }
+    }
 }
 

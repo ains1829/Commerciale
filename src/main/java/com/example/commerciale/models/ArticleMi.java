@@ -14,6 +14,7 @@ public class ArticleMi  {
    String nom ;
    String unite;
    int Id_categorie;
+   String modegestion;
 	public ArticleMi() {
 	}
 	public int getId_article() {
@@ -55,6 +56,12 @@ public class ArticleMi  {
 		catch(Exception e){ throw new Exception("id_categorie:"+id_categorie+" invalide"); }
 		setId_categorie(Integer.valueOf(id_categorie));
 	}
+	public String getModegestion() {
+        return modegestion;
+    }
+    public void setModegestion(String modegestion) {
+        this.modegestion = modegestion;
+    }
 
    
 }

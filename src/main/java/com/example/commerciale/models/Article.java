@@ -11,6 +11,7 @@ public class Article {
     String   nom   ;
     String unite ;
     int id_categorie ;
+    String modegestion;
     public Article(int id_article, String nom, String unite, int id_categorie) {
         this.id_article = id_article;
         this.nom = nom;
@@ -43,4 +44,11 @@ public class Article {
     public void setId_categorie(int id_categorie) {
         this.id_categorie = id_categorie;
     }
+    public String getModegestion() {
+        return modegestion;
+    }
+    public void setModegestion(String modegestion) {
+        this.modegestion = modegestion;
+    }
+    
 }

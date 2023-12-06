@@ -42,7 +42,7 @@ public class PostmanController {
     @GetMapping("/generateBande")
     public List<Bandecommandedetail> getNewBandecommande(){
         Date date = Date.valueOf("2023-11-16") ;
-        return bandeservice.ajouterBandeDetails(date) ;
+        return bandeservice.ajouterBandeDetails(date);
     }
     @GetMapping("/bande")
     public Bandecommandedetail saving(@RequestBody Bandecommandedetail bd){

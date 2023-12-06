@@ -22,7 +22,12 @@
             <%
                 if(membrelogin.getDepartement().compareTo("SERVICE") == 0) { %>
                     <span><a href="/main/groupement">Groupement</a></span>
-                <%}
+                <%} 
+                if(membrelogin.getDepartement().compareTo("MAGASIN") == 0){ %>
+                    <span><a href="/mi/insertbonentreep1">Ajouter entree</a></span>
+                    <span><a href="#">Ajouter sortie</a></span>
+                    <span><a href="#">Voir Etat Stock</a></span>
+                <% }
             %>
             <span><a href="/main/notification">Notification</a></span>
             <span><a href="/mi/">Proformat</a></span>
