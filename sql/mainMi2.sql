@@ -66,12 +66,6 @@ CREATE TABLE articleprix(
    FOREIGN KEY(Id_article) REFERENCES article(Id_article)
 );
 CREATE TABLE proformatmere(
-    Id_proformatmere SERIAL PRIMARY KEY ,
-    dateproformat DATE,
-    nomproformatmere VARCHAR(100)
-) ;
-
-CREATE TABLE proformatmere(
    Id_proformatmere SERIAL,
    dateproformat DATE,
    nomproformat VARCHAR(100),
