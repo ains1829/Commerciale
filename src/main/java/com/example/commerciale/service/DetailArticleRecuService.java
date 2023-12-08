@@ -18,9 +18,10 @@ public class DetailArticleRecuService {
     public List<DetailArticleRecu> getAllDetailArticles() {
         return  detailArticleRepository.findAll();
     }
-    public DetailArticleRecu[] getTabAllmagasins(){
+    public DetailArticleRecu[] getTabAllDetailArticleRecus(){
         List<DetailArticleRecu> lstA=getAllDetailArticles();
         if(lstA==null){ return null; }
+        if(lstA.isEmpty()==true){ return null; }
         DetailArticleRecu[] magasins=new DetailArticleRecu[lstA.size()];
         for(int i=0;i<lstA.size();i++){
             magasins[i]=lstA.get(i);

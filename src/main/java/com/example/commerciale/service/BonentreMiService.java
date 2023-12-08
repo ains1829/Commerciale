@@ -25,6 +25,7 @@ public class BonentreMiService {
     public BonentreMi[] getTabAllArticles(){
         List<BonentreMi> lstB=getAllArticles();
         if(lstB==null){ return null; }
+        if(lstB.isEmpty()==true){ return null; }
         BonentreMi[] bonentreMis=new BonentreMi[lstB.size()];
         for(int i=0;i<lstB.size();i++){
             bonentreMis[i]=lstB.get(i);

@@ -26,6 +26,7 @@ public class ArticleMiService {
     public ArticleMi[] getTabAllArticles(){
         List<ArticleMi> lstA=getAllArticles();
         if(lstA==null){ return null; }
+        if(lstA.isEmpty()==true){ return null; }
         ArticleMi[] articles=new ArticleMi[lstA.size()];
         for(int i=0;i<lstA.size();i++){
             articles[i]=lstA.get(i);
@@ -36,7 +37,6 @@ public class ArticleMiService {
     public Optional<ArticleMi> getArticleById(int id) {
         return articleRepository.findById(id);
     }
-
     // Méthode pour supprimer un Article par son ID
     public void deleteArticle(int id) {
         articleRepository.deleteById(id);

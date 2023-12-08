@@ -25,7 +25,7 @@
                 <%} 
                 if(membrelogin.getDepartement().compareTo("MAGASIN") == 0){ %>
                     <span><a href="/mi/insertbonentreep1">Ajouter entree</a></span>
-                    <span><a href="#">Ajouter sortie</a></span>
+                    <span><a href="/mi/tosortir">Ajouter sortie</a></span>
                     <span><a href="#">Voir Etat Stock</a></span>
                 <% }
             %>

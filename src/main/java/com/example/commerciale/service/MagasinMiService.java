@@ -26,6 +26,7 @@ public class MagasinMiService {
     public MagasinMi[] getTabAllmagasins(){
         List<MagasinMi> lstA=getAllmagasins();
         if(lstA==null){ return null; }
+        if(lstA.isEmpty()==true){ return null; }
         MagasinMi[] magasins=new MagasinMi[lstA.size()];
         for(int i=0;i<lstA.size();i++){
             magasins[i]=lstA.get(i);

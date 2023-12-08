@@ -173,5 +173,26 @@ public class Micontrolleur {
             return "redirect:/mi/insertbonentreep2?idmagasin="+idmagasin+"&datereception="+datereception+"&idfournisseur="+idfournisseur+"&erreur="+ex.getMessage();
         }
     }
+
+    @GetMapping("/tosortir")
+    public String tosortir(@RequestParam(name = "erreur",defaultValue = " ") String erreur,HttpServletRequest request){
+        request.setAttribute("magasinMis", magasinService.getTabAllmagasins());
+        request.setAttribute("articles",articleService.getTabAllArticles());
+        request.setAttribute("erreur",erreur);
+        return "Sortir";
+    }
+    
+    @GetMapping("/sortirstock")
+    public String sortirstock(
+        @RequestParam(name = "idmagasin",defaultValue = " ") String idmagasin,
+        @RequestParam(name = "idarticle",defaultValue = " ") String idarticle,
+        @RequestParam(name = "quantite",defaultValue = " ") String quantite,
+        @RequestParam(name = "datesortie",defaultValue = " ") String datesortie,
+        @RequestParam(name = "erreur",defaultValue = " ") String erreur,
+        HttpServletRequest request
+    ){
+        
+        return "Sortir";
+    }
 }
 
