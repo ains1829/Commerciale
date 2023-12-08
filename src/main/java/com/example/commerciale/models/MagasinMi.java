@@ -149,6 +149,7 @@ public class MagasinMi {
         }catch(Exception ex){ throw new Exception("quantite :"+quantite+" invalide");  }
         try{ Date.valueOf(datesortie);
         }catch(Exception ex){ throw new Exception("datesortie :"+datesortie+" invalide");  }
+        this.sortirStock(bonsortieMiService, articleMiService, detailEntreeService, detailArticleEntreService,Integer.valueOf(id_article) ,Float.valueOf(quantite),Date.valueOf(datesortie) );
         
     }
 
