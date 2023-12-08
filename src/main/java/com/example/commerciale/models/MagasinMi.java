@@ -51,48 +51,6 @@ public class MagasinMi {
         return magasinMiService.getById(this.idmagasin).get();
     }
  
-    // public Movementstockout[] decomposermovementout(Connection connection)throws Exception{
-    //     verificationOuStock(connection);
-    //     Article article=new Article();
-	// 	article.setIdarticle(idarticle);
-	// 	article=(Article)article.readById(connection, "idarticle");
-	// 	if(article==null){ throw new Exception("article(id="+idarticle+") non valide"); }
-
-    //     Unitarticle unitarticle=new Unitarticle();
-    //     unitarticle.setIdunitarticle(this.idunitarticleorigine);
-    //     unitarticle.setIdarticle(this.idarticle);
-    //     unitarticle=unitarticle.getByIdAndIdarticle(connection);
-    //     if(unitarticle==null){ throw new ExceptionStock("unite :"+getIdunitarticleorigine()+" invalide pour article id:"+this.idarticle); }
-
-	// 	Object[] omvins=this.getAllMovementstockinOrderByMethodeGestionQuantiteinitIsRest(connection);
-	// 	Movementstockin mvin=null;
-    //     Movementstockout mout=null;
-    //     Vector<Movementstockout> vmout=new Vector<Movementstockout>();
-	// 	double quantiteR=unitarticle.toMinUnite(connection, this.quantite);
-	// 	double quantiteR2=unitarticle.toMinUnite(connection, this.quantite);
-
-	// 	//connection.setAutoCommit(false);
-	// 	for(int i=0;i<omvins.length;i++){
-	// 		mvin=(Movementstockin)omvins[i];
-	// 		mout=new Movementstockout();
-	// 		mout.setIdmovementstockin(mvin.getIdmovementstockin());
-    //         mout.setIdmovementmereout(this.idmovementmereout);
-    //         //anesorana le reste(le sisa avoaka)
-	// 		quantiteR2=quantiteR2-mvin.getQuantiteinitial(); //REMARQUE :getQuantiteinitial()--> (quantiteinitial-quantiteout) = quantite reste ao @ io mvin io
-	// 		if(quantiteR2<=0){//raha efa niala daholo
-	// 			mout.setQuantiteout(quantiteR);
-	// 			i=omvins.length;//arret
-	// 		}else{ //raha mbola quantiteR2>0 ambony donc mbola tsy feno ,donc afaka tonga de alaina daholo le mvin.getQuantiteinitial()
-	// 			quantiteR=quantiteR2;
-	// 			mout.setQuantiteout(mvin.getQuantiteinitial());
-	// 		}
-    //         vmout.add(mout);
-	// 	}
-    //     if(vmout.size()==0){ return null; }
-    //     Movementstockout[] movementstockouts=new Movementstockout[vmout.size()];
-    //     for(int i=0;i<vmout.size();i++){ movementstockouts[i]=vmout.elementAt(i); }
-    //     return movementstockouts;
-    // }
     public BonsortieMi[] decomposer(ArticleMiService articleMiService,DetailEntreeService detailEntreeService,DetailArticleEntreService detailArticleEntreService,int id_article,float quantite,Date datesortie )throws Exception{
         Vector<BonsortieMi> vbonsortieMi=new Vector<BonsortieMi>();
         if(quantite<0){ throw new Exception("quantite negatif"); } 

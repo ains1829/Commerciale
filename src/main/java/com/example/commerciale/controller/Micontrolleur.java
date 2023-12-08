@@ -1,5 +1,7 @@
 package com.example.commerciale.controller;
 
+import java.time.LocalTime;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,10 @@ import com.example.commerciale.service.ProformatMiService ;
 import com.example.commerciale.service.ProformatmereMiService;
 import com.example.commerciale.service.MagasinMiService;
 import com.example.commerciale.service.DetailArticleRecuService;
+import com.example.commerciale.service.DetailEntreeService;
 import com.example.commerciale.service.BonentreMiService;
+import com.example.commerciale.service.BonsortieMiService;
+import com.example.commerciale.service.DetailArticleEntreService;
 
 @Controller // Utiliser @Controller au lieu de @RestController
 @RequestMapping("/mi")
@@ -46,6 +51,12 @@ public class Micontrolleur {
     private DetailArticleRecuService detailArticleRecuService;
     @Autowired
     private BonentreMiService bonentreMiService;
+    @Autowired
+    private BonsortieMiService bonsortieMiService;
+    @Autowired
+    private DetailArticleEntreService detailArticleEntreService;
+    @Autowired
+    private DetailEntreeService detailEntreeService;
     @GetMapping("/")
     public String root(HttpServletRequest request,@RequestParam(name = "erreur", defaultValue = "") String erreur) {       
         request.setAttribute("articles",articleService.getTabAllArticles());
@@ -191,7 +202,14 @@ public class Micontrolleur {
         @RequestParam(name = "erreur",defaultValue = " ") String erreur,
         HttpServletRequest request
     ){
-        
+    try{
+        MagasinMi magasinMi=new MagasinMi();
+        magasinMi=magasinMi.getByTheId(magasinService);
+        if(magasinMi==null){ throw new Exception("Magasin id:"+idmagasin+" invalide"); }
+        magasinMi.sortirStock(bonsortieMiService,articleService,detailEntreeService,detailArticleEntreService,idarticle,quantite,datesortie );
+    }catch(Exception ex){
+
+    }  
         return "Sortir";
     }
 }
